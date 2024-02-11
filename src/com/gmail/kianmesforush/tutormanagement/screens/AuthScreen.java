@@ -6,6 +6,8 @@ import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.util.Scanner;
 
 public class AuthScreen implements Screen {
 	
@@ -13,17 +15,22 @@ public class AuthScreen implements Screen {
 	https://docs.oracle.com/javase/8/docs/api/javax/swing/JTextField.html
 	https://docs.oracle.com/javase/8/docs/api/javax/swing/JPasswordField.html
 	https://stackoverflow.com/questions/6810581/how-to-center-the-text-in-a-jlabel
+	https://stackoverflow.com/questions/7655127/how-to-convert-a-char-array-back-to-a-string
 	 */
 	
 	private final JLabel usernameLabel = new JLabel("Username");
-	private final JTextField username = new JTextField(10);
+	private final JTextField usernameInput = new JTextField(10);
 	private final JLabel passwordLabel = new JLabel("Password");
-	private final JPasswordField password = new JPasswordField(10);
+	private final JPasswordField passwordInput = new JPasswordField(10);
 	private final JButton loginBtn = new JButton("Login");
 	private final JButton backBtn = new JButton("Back");
 	private final JLabel errorMessage = new JLabel("", SwingConstants.CENTER);
 	private final JPanel fieldsPanel = new JPanel();
 	private final JPanel btnsPanel = new JPanel();
+	
+	private Scanner scanner;
+	private String usernameCredential;
+	private String passwordCredential;
 	
 	public JComponent show() {
 		//TODO: Layout and functionality
@@ -38,9 +45,9 @@ public class AuthScreen implements Screen {
 		panel.add(btnsPanel, BorderLayout.SOUTH);
 		
 		fieldsPanel.add(usernameLabel);
-		fieldsPanel.add(username);
+		fieldsPanel.add(usernameInput);
 		fieldsPanel.add(passwordLabel);
-		fieldsPanel.add(password);
+		fieldsPanel.add(passwordInput);
 		
 		btnsPanel.setLayout(new BorderLayout());
 		loginBtn.addActionListener(new LoginBtnPressed());
@@ -49,16 +56,24 @@ public class AuthScreen implements Screen {
 		backBtn.addActionListener(new BackBtnPressed());
 		btnsPanel.add(backBtn, BorderLayout.EAST);
 		
+		loadCredentials();
+		
 		return panel;
 	}
 	
 	//Event handlers
 	private class LoginBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (username.getText().isEmpty()) {
+			if (usernameInput.getText().isEmpty()) {
 				setErrorMessage("Username is empty");
-			} else if (password.getPassword().length == 0) {
+			} else if (passwordInput.getPassword().length == 0) {
 				setErrorMessage("Password is empty");
+			} else if (!usernameInput.getText().equals(usernameCredential)) {
+				setErrorMessage("Invalid username");
+			} else if (!String.valueOf(passwordInput.getPassword()).equals(passwordCredential)) {
+				setErrorMessage("Invalid password");
+			} else {
+				setErrorMessage("Successful authentication");
 			}
 		}
 	}
@@ -80,6 +95,25 @@ public class AuthScreen implements Screen {
 		} else {
 			errorMessage.setText(text);
 			errorMessage.setVisible(true);
+		}
+	}
+	
+	private void loadCredentials() {
+		try {
+			scanner = new Scanner(new File("credentials.txt"));
+			if (scanner.hasNext()) {
+				usernameCredential = scanner.next();
+			} else {
+				setErrorMessage("Username not found in credentials.txt");
+				return;
+			}
+			if (scanner.hasNext()) {
+				passwordCredential = scanner.next();
+			} else {
+				setErrorMessage("Password not found in credentials.txt");
+			}
+		} catch (Exception e) {
+			setErrorMessage(e.getMessage());
 		}
 	}
 }
