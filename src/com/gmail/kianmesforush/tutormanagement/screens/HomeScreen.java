@@ -2,12 +2,13 @@ package com.gmail.kianmesforush.tutormanagement.screens;
 
 import com.gmail.kianmesforush.tutormanagement.Screen;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.screens.unauthenticated.UserScreen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainScreen implements Screen {
+public class HomeScreen implements Screen {
 	
 	private final JButton continueBtn = new JButton("Continue");
 	private final JButton authBtn = new JButton("Authenticated User Login");

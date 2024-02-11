@@ -2,6 +2,7 @@ package com.gmail.kianmesforush.tutormanagement.screens;
 
 import com.gmail.kianmesforush.tutormanagement.Screen;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.screens.authenticated.AuthUserPrimaryScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +29,6 @@ public class AuthScreen implements Screen {
 	private final JPanel fieldsPanel = new JPanel();
 	private final JPanel btnsPanel = new JPanel();
 	
-	private Scanner scanner;
 	private String usernameCredential;
 	private String passwordCredential;
 	
@@ -73,7 +73,7 @@ public class AuthScreen implements Screen {
 			} else if (!String.valueOf(passwordInput.getPassword()).equals(passwordCredential)) {
 				setErrorMessage("Invalid password");
 			} else {
-				setErrorMessage("Successful authentication");
+				ScreenManager.setCurrentScreen(new AuthUserPrimaryScreen());
 			}
 		}
 	}
@@ -84,7 +84,7 @@ public class AuthScreen implements Screen {
 			Return to a new instance of the MainScreen, the ScreenManager handles
 			opening and closing the appropriate windows
 			 */
-			ScreenManager.setCurrentScreen(new MainScreen());
+			ScreenManager.setCurrentScreen(new HomeScreen());
 		}
 	}
 	
@@ -100,7 +100,7 @@ public class AuthScreen implements Screen {
 	
 	private void loadCredentials() {
 		try {
-			scanner = new Scanner(new File("credentials.txt"));
+			Scanner scanner = new Scanner(new File("credentials.txt"));
 			if (scanner.hasNext()) {
 				usernameCredential = scanner.next();
 			} else {
