@@ -1,4 +1,5 @@
-import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+package com.gmail.kianmesforush.tutormanagement;
+
 import com.gmail.kianmesforush.tutormanagement.screens.MainScreen;
 
 public class TutorManagement {
