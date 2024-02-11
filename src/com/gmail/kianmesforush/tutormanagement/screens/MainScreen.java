@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 
 public class MainScreen implements Screen {
 	
-	JButton continueBtn = new JButton("Continue");
-	JButton authBtn = new JButton("Authenticated User Login");
-	JButton exitBtn = new JButton("Exit");
+	private final JButton continueBtn = new JButton("Continue");
+	private final JButton authBtn = new JButton("Authenticated User Login");
+	private final JButton exitBtn = new JButton("Exit");
 	
 	public JComponent show() {
 		

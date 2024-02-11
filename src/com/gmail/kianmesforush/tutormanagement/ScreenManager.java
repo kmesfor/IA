@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScreenManager extends JFrame {
-	public static Screen currentScreen;
-	public static JFrame frame;
+	private static Screen currentScreen;
+	private static JFrame frame;
 	public ScreenManager(Screen currentScreen) {
 		//Store arguments
 		ScreenManager.currentScreen = currentScreen;

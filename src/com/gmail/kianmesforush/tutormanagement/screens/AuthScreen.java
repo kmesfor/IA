@@ -15,15 +15,15 @@ public class AuthScreen implements Screen {
 	https://stackoverflow.com/questions/6810581/how-to-center-the-text-in-a-jlabel
 	 */
 	
-	JLabel usernameLabel = new JLabel("Username");
-	JTextField username = new JTextField(10);
-	JLabel passwordLabel = new JLabel("Password");
-	JPasswordField password = new JPasswordField(10);
-	JButton loginBtn = new JButton("Login");
-	JButton backBtn = new JButton("Back");
-	JLabel errorMessage = new JLabel("", SwingConstants.CENTER);
-	JPanel fieldsPanel = new JPanel();
-	JPanel btnsPanel = new JPanel();
+	private final JLabel usernameLabel = new JLabel("Username");
+	private final JTextField username = new JTextField(10);
+	private final JLabel passwordLabel = new JLabel("Password");
+	private final JPasswordField password = new JPasswordField(10);
+	private final JButton loginBtn = new JButton("Login");
+	private final JButton backBtn = new JButton("Back");
+	private final JLabel errorMessage = new JLabel("", SwingConstants.CENTER);
+	private final JPanel fieldsPanel = new JPanel();
+	private final JPanel btnsPanel = new JPanel();
 	
 	public JComponent show() {
 		//TODO: Layout and functionality
