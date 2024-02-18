@@ -6,7 +6,7 @@ import java.awt.*;
 public class ScreenManager extends JFrame {
 	private static Screen currentScreen;
 	private static JFrame frame;
-	public ScreenManager(Screen currentScreen) {
+	public static void initialize(Screen currentScreen) {
 		//Store arguments
 		ScreenManager.currentScreen = currentScreen;
 		
@@ -26,10 +26,6 @@ public class ScreenManager extends JFrame {
 		currentScreen.panel.setLayout(new FlowLayout());
 		currentScreen = screen;
 		frame.setContentPane(screen.show());
-	}
-	
-	public static Screen getCurrentScreen() {
-		return currentScreen;
 	}
 	
 	public static void exit() {
