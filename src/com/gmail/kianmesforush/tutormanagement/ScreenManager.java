@@ -19,6 +19,7 @@ public class ScreenManager extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	// TODO: Should there be an option for screen to overlay the current panel (ex. use case: create user)
 	//Display a new screen by first removing the previous screen and then initializing the next
 	public static void setCurrentScreen(Screen screen) {
 		// https://stackoverflow.com/questions/21365570/how-to-dispose-a-jpanel-jpanel1-dispose-or-equivalent
@@ -29,7 +30,7 @@ public class ScreenManager extends JFrame {
 	}
 	
 	public static void exit() {
-		//TODO: cleanup
+		//TODO: handle cleanup code
 		System.exit(0);
 	}
 }
