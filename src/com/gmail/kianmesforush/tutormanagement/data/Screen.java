@@ -1,4 +1,4 @@
-package com.gmail.kianmesforush.tutormanagement;
+package com.gmail.kianmesforush.tutormanagement.data;
 
 import javax.swing.*;
 

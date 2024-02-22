@@ -1,5 +1,7 @@
 package com.gmail.kianmesforush.tutormanagement;
 
+import com.gmail.kianmesforush.tutormanagement.data.Screen;
+
 import javax.swing.*;
 import java.awt.*;
 

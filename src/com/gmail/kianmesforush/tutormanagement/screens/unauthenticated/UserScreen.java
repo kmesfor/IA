@@ -1,6 +1,6 @@
 package com.gmail.kianmesforush.tutormanagement.screens.unauthenticated;
 
-import com.gmail.kianmesforush.tutormanagement.Screen;
+import com.gmail.kianmesforush.tutormanagement.data.Screen;
 
 import javax.swing.*;
 
