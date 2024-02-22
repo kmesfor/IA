@@ -8,4 +8,4 @@
 [] Clean exit function - cleanly saves data
 [] Tutor management GUI with list of tutors
 [] Add tutor functionality
-    [] ScreenManagement overlay function
+    [x] ScreenManagement overlay function (popup)
