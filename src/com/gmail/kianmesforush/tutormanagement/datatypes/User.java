@@ -9,28 +9,12 @@ public abstract class User implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 	private final String name;
-	private final ArrayList<TutoringSession> availability = new ArrayList<>();
-	private final ArrayList<String> notes = new ArrayList<>();
+	public final ArrayList<TutoringSession> availability = new ArrayList<>();
+	public final ArrayList<String> notes = new ArrayList<>();
 	
 	public User(String name) {
 		this.name = name;
 	}
 	
 	public String getName() { return this.name; }
-	
-	public ArrayList<TutoringSession> getAvailability() { return this.availability; }
-	
-	public void setAvailability(TutoringSession session, Boolean isAvailable) {
-		if (isAvailable) {
-			if (!availability.contains(session)) availability.add(session);
-		} else {
-			availability.remove(session);
-		}
-	}
-	
-	public ArrayList<String> getNotes() { return this.notes; }
-	
-	public void addNote(String note) { notes.add(note); }
-	
-	public void removeNote(int index) { notes.remove(index); }
 }
