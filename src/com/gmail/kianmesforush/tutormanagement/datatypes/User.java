@@ -8,10 +8,13 @@ public abstract class User implements Serializable {
 	//https://www.tutorialspoint.com/java/java_serialization.htm
 	@Serial
 	private static final long serialVersionUID = 1L;
-	
-	private String name;
+	private final String name;
 	private final ArrayList<TutoringSession> availability = new ArrayList<>();
 	private final ArrayList<String> notes = new ArrayList<>();
+	
+	public User(String name) {
+		this.name = name;
+	}
 	
 	public String getName() { return this.name; }
 	
