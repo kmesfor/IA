@@ -4,7 +4,7 @@
 [] Working main GUI (after auth)
     [] Placeholder panels for each button
     [] Working back/exit button
-[] Data management class
+[x] Data management class
 [] Clean exit function - cleanly saves data
 [] Tutor management GUI with list of tutors
 [] Add tutor functionality
