@@ -1,9 +1,11 @@
 package com.gmail.kianmesforush.tutormanagement;
 
-import com.gmail.kianmesforush.tutormanagement.data.Screen;
+import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ScreenManager {
 	private static Screen currentScreen;
@@ -23,7 +25,18 @@ public class ScreenManager {
 		frame.setLocation(300, 300);
 		frame.setContentPane(currentScreen.show());
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Ignore close operation to shut down application cleanly instead
+		//https://stackoverflow.com/questions/12210972/setdefaultcloseoperation-to-show-a-jframe-instead
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent event) {
+				if (JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit? Data may not be saved.") == JOptionPane.OK_OPTION) {
+					exit();
+				}
+			}
+		});
 		
 		//Initial a new hidden JFrame that acts as the application's popup window
 		popupFrame = new JFrame("Tutoring Management");
@@ -44,7 +57,7 @@ public class ScreenManager {
 		frame.revalidate();
 		frame.repaint();
 		
-		//Hide the popoutFrame
+		//Hide the pop out frame
 		popupFrame.setVisible(false);
 		
 		//Load the screen passed as an argument
@@ -54,7 +67,9 @@ public class ScreenManager {
 	
 	public static void exit() {
 		//TODO: handle cleanup code
-		System.exit(0);
+		
+		//Call the exit function of the main program
+		TutorManagement.exit();
 	}
 	
 	// Clean old popups and create a new one
