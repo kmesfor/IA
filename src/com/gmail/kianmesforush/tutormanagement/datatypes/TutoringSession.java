@@ -1,4 +1,4 @@
-package com.gmail.kianmesforush.tutormanagement.data;
+package com.gmail.kianmesforush.tutormanagement.datatypes;
 
 public class TutoringSession extends GeneralDataType {
 	public TutoringSession(String name) {
