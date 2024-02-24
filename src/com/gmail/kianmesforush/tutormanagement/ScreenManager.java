@@ -19,10 +19,9 @@ public class ScreenManager {
 		ScreenManager.currentScreen = currentScreen;
 		
 		//Initialize a new JFrame that acts as the application's main window
-		//TODO: update sizing & make it a config option
 		frame = new JFrame("Tutoring Management");
-		frame.setSize(400, 200);
-		frame.setLocation(300, 300);
+		frame.setSize(TutorManagement.SCREEN_WIDTH, TutorManagement.SCREEN_HEIGHT);
+		frame.setLocation(TutorManagement.SCREEN_LOC_X, TutorManagement.SCREEN_LOC_Y);
 		frame.setContentPane(currentScreen.show());
 		frame.setVisible(true);
 		
@@ -40,8 +39,8 @@ public class ScreenManager {
 		
 		//Initial a new hidden JFrame that acts as the application's popup window
 		popupFrame = new JFrame("Tutoring Management");
-		popupFrame.setSize(200, 200);
-		popupFrame.setLocation(200, 200);
+		popupFrame.setSize(TutorManagement.POPOUT_WIDTH, TutorManagement.POPOUT_HEIGHT);
+		popupFrame.setLocation(TutorManagement.POPOUT_LOC_X, TutorManagement.POPOUT_LOC_Y);
 		popupFrame.setVisible(false);
 		popupFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
