@@ -1,5 +1,6 @@
 package com.gmail.kianmesforush.tutormanagement;
 
+import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
 import com.gmail.kianmesforush.tutormanagement.datatypes.TutoringSession;
 import com.gmail.kianmesforush.tutormanagement.screens.ErrorScreen;
 
@@ -12,15 +13,18 @@ import java.util.Arrays;
 //Serialization method via https://www.tutorialspoint.com/java/java_serialization.htm
 public class DataManager {
 	public static ArrayList<TutoringSession> sessions = new ArrayList<>();
+	public static ArrayList<Tutor> tutors = new ArrayList<>();
 	
 	//Compiler causing unnecessary errors, DataManager is the only class that will touch the data files
 	@SuppressWarnings("unchecked")
 	public static void initialize() {
 		sessions = (ArrayList<TutoringSession>) deserialize("data/sessions");
+		tutors = (ArrayList<Tutor>) deserialize("data/tutors");
 	}
 	
 	public static void save() {
 		serialize(sessions, "data/sessions");
+		serialize(tutors, "data/tutors");
 	}
 
 
