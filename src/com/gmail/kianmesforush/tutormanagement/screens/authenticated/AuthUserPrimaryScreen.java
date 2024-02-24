@@ -2,6 +2,7 @@ package com.gmail.kianmesforush.tutormanagement.screens.authenticated;
 
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.screens.HomeScreen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ public class AuthUserPrimaryScreen implements Screen {
 	public JComponent show() {
 		//TODO: layout
 		tutorMgmtBtn.addActionListener(new TutorMgmtBtnPressed());
+		backBtn.addActionListener(new BackBtnPressed());
 		
 		panel.add(tutorMgmtBtn);
 		panel.add(tuteeMgmtBtn);
@@ -30,8 +32,10 @@ public class AuthUserPrimaryScreen implements Screen {
 	}
 	
 	private static class TutorMgmtBtnPressed implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			ScreenManager.setCurrentScreen(new TutorMgmtScreen());
-		}
+		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new TutorMgmtScreen()); }
+	}
+	
+	private static class BackBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new HomeScreen()); }
 	}
 }
