@@ -32,7 +32,7 @@ public class TutorMgmtScreen implements Screen {
 		
 		listPanel.setLayout(new GridLayout(DataManager.tutors.size(), 1));
 		for (int i = 0; i < DataManager.tutors.size(); i++) {
-			listPanel.add(new UserMgmtComponent(DataManager.tutors.get(i), i).show());
+			listPanel.add(new UserMgmtComponent(DataManager.tutors.get(i), i+1).show());
 		}
 		
 		controlPanel.add(backBtn);
