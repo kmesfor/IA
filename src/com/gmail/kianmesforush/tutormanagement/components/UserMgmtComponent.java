@@ -1,9 +1,7 @@
 package com.gmail.kianmesforush.tutormanagement.components;
 
-import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.TutorManagement;
-import com.gmail.kianmesforush.tutormanagement.datatypes.Tutee;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
 import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;

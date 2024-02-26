@@ -5,10 +5,7 @@ import com.gmail.kianmesforush.tutormanagement.datatypes.TutoringSession;
 import com.gmail.kianmesforush.tutormanagement.screens.ErrorScreen;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 //Serialization method via https://www.tutorialspoint.com/java/java_serialization.htm
 public class DataManager {
@@ -46,8 +43,6 @@ public class DataManager {
 	private static Object deserialize(String path) {
 		Object returnValue;
 		try {
-			//Initiate file and object streams
-			File file = new File(path);
 			FileInputStream fileStream = new FileInputStream(path);
 			ObjectInputStream objectStream = new ObjectInputStream(fileStream);
 			// read the file

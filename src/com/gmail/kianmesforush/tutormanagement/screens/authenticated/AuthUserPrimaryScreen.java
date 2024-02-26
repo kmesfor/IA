@@ -3,7 +3,6 @@ package com.gmail.kianmesforush.tutormanagement.screens.authenticated;
 import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
-import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
 import com.gmail.kianmesforush.tutormanagement.screens.HomeScreen;
 
 import javax.swing.*;
@@ -41,7 +40,7 @@ public class AuthUserPrimaryScreen implements Screen {
 	private static class TutorMgmtBtnPressed implements ActionListener {
 		// Create a clone of DataManager.tutors so the saved data is not edited until a save button is pressed
 		// https://stackoverflow.com/questions/30074736/how-to-duplicate-an-array-list-in-java
-		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new TutorMgmtScreen(new ArrayList<Tutor>(DataManager.tutors))); }
+		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new TutorMgmtScreen(new ArrayList<>(DataManager.tutors))); }
 	}
 	
 	private static class TuteeMgmtBtnPressed implements ActionListener {

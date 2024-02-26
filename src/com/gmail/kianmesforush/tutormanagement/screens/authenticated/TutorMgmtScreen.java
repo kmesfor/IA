@@ -3,11 +3,8 @@ package com.gmail.kianmesforush.tutormanagement.screens.authenticated;
 import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.components.UserMgmtComponent;
-import com.gmail.kianmesforush.tutormanagement.datatypes.Popup;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
-import com.gmail.kianmesforush.tutormanagement.datatypes.User;
-import com.gmail.kianmesforush.tutormanagement.popups.TestPopup;
 
 import javax.swing.*;
 import java.awt.*;
