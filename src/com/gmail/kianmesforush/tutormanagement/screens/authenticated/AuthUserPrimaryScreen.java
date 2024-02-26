@@ -22,6 +22,10 @@ public class AuthUserPrimaryScreen implements Screen {
 	public JComponent show() {
 		//TODO: layout
 		tutorMgmtBtn.addActionListener(new TutorMgmtBtnPressed());
+		tuteeMgmtBtn.addActionListener(new TuteeMgmtBtnPressed());
+		generalMgmtBtn.addActionListener(new GeneralMgmtButtonPressed());
+		createAptBtn.addActionListener(new CreateAptBtnPressed());
+		viewHoursBtn.addActionListener(new ViewHoursBtnPressed());
 		backBtn.addActionListener(new BackBtnPressed());
 		
 		panel.add(tutorMgmtBtn);
@@ -38,6 +42,22 @@ public class AuthUserPrimaryScreen implements Screen {
 		// Create a clone of DataManager.tutors so the saved data is not edited until a save button is pressed
 		// https://stackoverflow.com/questions/30074736/how-to-duplicate-an-array-list-in-java
 		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new TutorMgmtScreen(new ArrayList<Tutor>(DataManager.tutors))); }
+	}
+	
+	private static class TuteeMgmtBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new TuteeMgmtScreen()); }
+	}
+	
+	private static class GeneralMgmtButtonPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new GeneralMgmtScreen()); }
+	}
+	
+	private static class CreateAptBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new CreateAptScreen()); }
+	}
+	
+	private static class ViewHoursBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new ViewHoursScreen()); }
 	}
 	
 	private static class BackBtnPressed implements ActionListener {
