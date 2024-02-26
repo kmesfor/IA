@@ -1,13 +1,22 @@
 package com.gmail.kianmesforush.tutormanagement.components;
 
+import com.gmail.kianmesforush.tutormanagement.DataManager;
+import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.TutorManagement;
+import com.gmail.kianmesforush.tutormanagement.datatypes.Tutee;
+import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
+import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class UserMgmtComponent {
 	private final User user;
+	private final ArrayList<Tutor> tutors;
 	private final JPanel panel = new JPanel();
 	
 	private final JLabel numberLabel;
@@ -16,9 +25,10 @@ public class UserMgmtComponent {
 	private final JButton editBtn = new JButton("Edit");
 	private final JButton removeBtn = new JButton("Remove");
 	
-	public UserMgmtComponent(User user, int number) {
-		this.user = user;
-		numberLabel = new JLabel(""+ number);
+	public UserMgmtComponent(ArrayList<Tutor> tutors, int index) {
+		this.tutors = tutors;
+		this.user = tutors.get(index);
+		numberLabel = new JLabel(""+ (index+1));
 		nameLabel = new JLabel(user.getName());
 		
 		numberLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
@@ -29,7 +39,9 @@ public class UserMgmtComponent {
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setVerticalAlignment(SwingConstants.CENTER);
 	}
+	
 	public Component show() {
+		removeBtn.addActionListener(new RemoveBtnPressed());
 		panel.setLayout(new GridLayout(1, 5));
 		panel.add(numberLabel);
 		panel.add(nameLabel);
@@ -43,5 +55,14 @@ public class UserMgmtComponent {
 		panel.setPreferredSize(new Dimension(TutorManagement.SCREEN_WIDTH - 50, 40));
 		
 		return panel;
+		
 	}
+	
+	public class RemoveBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (user instanceof Tutor) tutors.remove(user);
+			ScreenManager.setCurrentScreen(new TutorMgmtScreen(tutors));
+		}
+	}
+	
 }

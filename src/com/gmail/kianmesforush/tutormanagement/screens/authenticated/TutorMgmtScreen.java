@@ -1,14 +1,19 @@
 package com.gmail.kianmesforush.tutormanagement.screens.authenticated;
 
 import com.gmail.kianmesforush.tutormanagement.DataManager;
+import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.components.UserMgmtComponent;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Popup;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
+import com.gmail.kianmesforush.tutormanagement.datatypes.User;
 import com.gmail.kianmesforush.tutormanagement.popups.TestPopup;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class TutorMgmtScreen implements Screen {
 	
@@ -21,6 +26,11 @@ public class TutorMgmtScreen implements Screen {
 	private final JButton saveBtn = new JButton("Save");
 	private final JButton addBtn = new JButton("Add user");
 	private final JButton filterBtn = new JButton("Filter");
+	private final ArrayList<Tutor> tutors;
+	
+	public TutorMgmtScreen(ArrayList<Tutor> tutors) {
+		this.tutors = tutors;
+	}
 	
 	public JComponent show() {
 		
@@ -30,9 +40,9 @@ public class TutorMgmtScreen implements Screen {
 		panel.add(new JScrollPane(listPanel), BorderLayout.CENTER);
 		panel.add(controlPanel, BorderLayout.SOUTH);
 		
-		listPanel.setLayout(new GridLayout(DataManager.tutors.size(), 1));
-		for (int i = 0; i < DataManager.tutors.size(); i++) {
-			listPanel.add(new UserMgmtComponent(DataManager.tutors.get(i), i+1).show());
+		listPanel.setLayout(new GridLayout(tutors.size(), 1));
+		for (int i = 0; i < tutors.size(); i++) {
+			listPanel.add(new UserMgmtComponent(tutors, i).show());
 		}
 		
 		controlPanel.add(backBtn);
