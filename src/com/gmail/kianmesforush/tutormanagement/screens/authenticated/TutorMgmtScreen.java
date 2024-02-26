@@ -45,12 +45,25 @@ public class TutorMgmtScreen implements Screen {
 			listPanel.add(new UserMgmtComponent(tutors, i).show());
 		}
 		
+		backBtn.addActionListener(new BackBtnPressed());
+		saveBtn.addActionListener(new SaveBtnPressed());
 		controlPanel.add(backBtn);
 		controlPanel.add(saveBtn);
 		controlPanel.add(addBtn);
 		controlPanel.add(filterBtn);
 		
 		return panel;
+	}
+	
+	private static class BackBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new AuthUserPrimaryScreen()); }
+	}
+	
+	private class SaveBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			DataManager.tutors = tutors;
+			ScreenManager.setCurrentScreen(new AuthUserPrimaryScreen());
+		}
 	}
 }
 

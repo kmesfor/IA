@@ -35,6 +35,8 @@ public class AuthUserPrimaryScreen implements Screen {
 	}
 	
 	private static class TutorMgmtBtnPressed implements ActionListener {
+		// Create a clone of DataManager.tutors so the saved data is not edited until a save button is pressed
+		// https://stackoverflow.com/questions/30074736/how-to-duplicate-an-array-list-in-java
 		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new TutorMgmtScreen(new ArrayList<Tutor>(DataManager.tutors))); }
 	}
 	

@@ -3,7 +3,7 @@
 [x] Complete login/auth screen
 [] Working main GUI (after auth)
     [] Placeholder panels for each button
-    [] Working back/exit button
+    [x] Working back/exit button
 [x] Data management class
 [] Clean exit function - cleanly saves data
 [] Tutor management GUI with list of tutors
