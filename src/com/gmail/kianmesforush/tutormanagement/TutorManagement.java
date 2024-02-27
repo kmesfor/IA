@@ -8,8 +8,8 @@ public class TutorManagement {
 	public static final int SCREEN_LOC_X = 300;
 	public static final int SCREEN_LOC_Y = 300;
 	
-	public static final int POPOUT_WIDTH = 200;
-	public static final int POPOUT_HEIGHT = 200;
+	public static final int POPOUT_WIDTH = 300;
+	public static final int POPOUT_HEIGHT = 400;
 	public static final int POPOUT_LOC_X = 200;
 	public static final int POPOUT_LOC_Y = 200;
 	
