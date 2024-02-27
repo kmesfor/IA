@@ -10,7 +10,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.util.Scanner;
 
-public class AuthScreen implements Screen {
+public class AuthScreen extends Screen {
 	
 	/*
 	https://docs.oracle.com/javase/8/docs/api/javax/swing/JTextField.html
@@ -32,7 +32,7 @@ public class AuthScreen implements Screen {
 	private String usernameCredential;
 	private String passwordCredential;
 	
-	public JComponent show() {
+	public JComponent show(JPanel panel) {
 		//TODO: Layout and functionality
 		//Initializing panel content
 		panel.setLayout(new BorderLayout());

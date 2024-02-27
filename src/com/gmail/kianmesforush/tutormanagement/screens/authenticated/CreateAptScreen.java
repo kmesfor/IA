@@ -7,11 +7,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CreateAptScreen implements Screen {
+public class CreateAptScreen extends Screen {
 	
 	private final JButton backBtn = new JButton("Back");
 	
-	public JComponent show() {
+	public JComponent show(JPanel panel) {
 		backBtn.addActionListener(new BackBtnPressed());
 		panel.add(backBtn);
 		

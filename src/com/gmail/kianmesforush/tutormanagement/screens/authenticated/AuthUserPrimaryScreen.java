@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class AuthUserPrimaryScreen implements Screen {
+public class AuthUserPrimaryScreen extends Screen {
 	private final JButton tutorMgmtBtn = new JButton("Tutor Management");
 	private final JButton tuteeMgmtBtn = new JButton("Tutee Management");
 	private final JButton generalMgmtBtn = new JButton("General Management");
@@ -18,7 +18,7 @@ public class AuthUserPrimaryScreen implements Screen {
 	private final JButton viewHoursBtn = new JButton("View completed tutoring hours");
 	private final JButton backBtn = new JButton("Back");
 	
-	public JComponent show() {
+	public JComponent show(JPanel panel) {
 		//TODO: layout
 		tutorMgmtBtn.addActionListener(new TutorMgmtBtnPressed());
 		tuteeMgmtBtn.addActionListener(new TuteeMgmtBtnPressed());

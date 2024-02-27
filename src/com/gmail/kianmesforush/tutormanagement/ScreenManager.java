@@ -14,6 +14,9 @@ public class ScreenManager {
 	private static JFrame frame;
 	private static JFrame popupFrame;
 	
+	private static JPanel panel = new JPanel();
+	private static JPanel popupPanel = new JPanel();
+	
 	public static void initialize(Screen currentScreen) {
 		//Store arguments
 		ScreenManager.currentScreen = currentScreen;
@@ -22,7 +25,7 @@ public class ScreenManager {
 		frame = new JFrame("Tutoring Management");
 		frame.setSize(TutorManagement.SCREEN_WIDTH, TutorManagement.SCREEN_HEIGHT);
 		frame.setLocation(TutorManagement.SCREEN_LOC_X, TutorManagement.SCREEN_LOC_Y);
-		frame.setContentPane(currentScreen.show());
+		frame.setContentPane(currentScreen.show(panel));
 		frame.setVisible(true);
 		
 		//Ignore close operation to shut down application cleanly instead
@@ -50,18 +53,15 @@ public class ScreenManager {
 		// https://stackoverflow.com/questions/21365570/how-to-dispose-a-jpanel-jpanel1-dispose-or-equivalent
 		// https://stackoverflow.com/questions/17608421/how-to-reload-a-jpanel
 		
-		//Clean the currentScreen panel and frame
-		currentScreen.panel.removeAll();
-		currentScreen.panel.setLayout(new FlowLayout());
-		frame.revalidate();
-		frame.repaint();
-		
 		//Hide the pop out frame
 		popupFrame.setVisible(false);
 		
-		//Load the screen passed as an argument
+		//Clean the currentScreen panel and frame
+		panel = new JPanel();
 		currentScreen = screen;
-		frame.setContentPane(screen.show());
+		frame.setContentPane(currentScreen.show(panel));
+		frame.repaint();
+		frame.revalidate();
 	}
 	
 	public static void exit() {
@@ -73,16 +73,17 @@ public class ScreenManager {
 	
 	// Clean old popups and create a new one
 	public static void showPopup(Screen popup) {
-		currentPopup.panel.removeAll();
-		currentPopup.panel.setLayout(new FlowLayout());
-		popupFrame.setVisible(true);
-		
+		popupPanel = new JPanel();
 		currentPopup = popup;
-		popupFrame.setContentPane(popup.show());
+		popupFrame.setContentPane(currentPopup.show(popupPanel));
+		popupFrame.repaint();
+		popupFrame.revalidate();
+		popupFrame.setVisible(true);
 	}
 
 	// Close the current popup by reloading the current screen which will remove and re-render the panels
 	public static void closePopup() {
+		popupFrame.setVisible(false);
 		setCurrentScreen(currentScreen);
 	}
 }

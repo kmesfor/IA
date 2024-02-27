@@ -8,13 +8,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomeScreen implements Screen {
+public class HomeScreen extends Screen {
 	
 	private final JButton continueBtn = new JButton("Continue");
 	private final JButton authBtn = new JButton("Authenticated User Login");
 	private final JButton exitBtn = new JButton("Exit");
 	
-	public JComponent show() {
+	public JComponent show(JPanel panel) {
 		
 		continueBtn.addActionListener(new ContinueBtnPressed());
 		panel.add(continueBtn);
