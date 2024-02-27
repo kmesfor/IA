@@ -9,3 +9,4 @@
 [] Tutor management GUI with list of tutors
 [] Add tutor functionality
     [x] ScreenManagement overlay function (popup)
+[] add titles to panels
