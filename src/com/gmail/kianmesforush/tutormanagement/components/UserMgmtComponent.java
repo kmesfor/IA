@@ -52,7 +52,6 @@ public class UserMgmtComponent {
 		panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		//https://stackoverflow.com/questions/22920046/how-to-set-fix-size-of-jlabel
 		panel.setPreferredSize(new Dimension(TutorManagement.SCREEN_WIDTH - 50, 40));
-		
 		return panel;
 		
 	}
