@@ -1,5 +1,6 @@
 package com.gmail.kianmesforush.tutormanagement.screens;
 
+import com.gmail.kianmesforush.tutormanagement.TutorManagement;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.screens.unauthenticated.UserScreen;
@@ -13,6 +14,7 @@ public class HomeScreen extends Screen {
 	private final JButton continueBtn = new JButton("Continue");
 	private final JButton authBtn = new JButton("Authenticated User Login");
 	private final JButton exitBtn = new JButton("Exit");
+	private final JButton loadSampleDataBtn = new JButton("Load Sample Data");
 	
 	public JComponent show(JPanel panel) {
 		
@@ -24,6 +26,9 @@ public class HomeScreen extends Screen {
 		
 		exitBtn.addActionListener(new ExitBtnPressed());
 		panel.add(exitBtn);
+		
+		loadSampleDataBtn.addActionListener(new LoadSampleDataBtnPressed());
+		panel.add(loadSampleDataBtn);
 		
 		return panel;
 	}
@@ -43,6 +48,12 @@ public class HomeScreen extends Screen {
 	private static class ExitBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			ScreenManager.exit();
+		}
+	}
+	
+	private static class LoadSampleDataBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			TutorManagement.loadSampleData();
 		}
 	}
 }
