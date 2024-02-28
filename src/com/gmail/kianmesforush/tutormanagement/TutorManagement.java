@@ -47,6 +47,17 @@ public class TutorManagement {
 		DataManager.tutors.get(DataManager.tutors.size() - 1).skills.add(DataManager.skills.get(DataManager.skills.size() - 1));
 		DataManager.tutors.get(DataManager.tutors.size() - 1).notes.add("Test Note A");
 		DataManager.tutors.get(DataManager.tutors.size() - 1).notes.add("Test Note B");
+		
+		DataManager.tutees.add(new Tutee("Test Tutee A"));
+		DataManager.tutees.add(new Tutee("Test Tutee B"));
+		
+		//Uses the last added index (the new example tutors)
+		DataManager.tutees.get(DataManager.tutees.size() - 1).availability.add(DataManager.sessions.get(DataManager.sessions.size() - 1));
+		DataManager.tutees.get(DataManager.tutees.size() - 1).classNames.add(DataManager.classNames.get(DataManager.classNames.size() - 1));
+		DataManager.tutees.get(DataManager.tutees.size() - 1).proficiencies.add(DataManager.proficiencies.get(DataManager.proficiencies.size() - 1));
+		DataManager.tutees.get(DataManager.tutees.size() - 1).skills.add(DataManager.skills.get(DataManager.skills.size() - 1));
+		DataManager.tutees.get(DataManager.tutees.size() - 1).notes.add("Test Note A");
+		DataManager.tutees.get(DataManager.tutees.size() - 1).notes.add("Test Note B");
 	}
 	
 }
