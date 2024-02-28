@@ -1,12 +1,9 @@
 package com.gmail.kianmesforush.tutormanagement.datatypes;
 
-import java.util.ArrayList;
+// Logical separation between Tutor and Tutee for differing
+// GUI text values. However, they function identically
 
 public class Tutee extends User {
-	public final ArrayList<Class> classesNeeded = new ArrayList<>();
-	public final ArrayList<Skill> skillsNeeded = new ArrayList<>();
-	public final ArrayList<Proficiency> proficienciesNeeded = new ArrayList<>();
-	
 	public Tutee(String name) {
 		super(name);
 	}
