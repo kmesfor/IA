@@ -4,6 +4,8 @@ import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.TutorManagement;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
+import com.gmail.kianmesforush.tutormanagement.datatypes.UserType;
+import com.gmail.kianmesforush.tutormanagement.popups.EditUserPopup;
 import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;
 
 import javax.swing.*;
@@ -25,6 +27,7 @@ public class UserMgmtComponent {
 	private final JButton removeBtn = new JButton("Remove");
 	
 	public UserMgmtComponent(ArrayList<Tutor> tutors, int index) {
+		//TODO: change this to handle tutees as well
 		this.tutors = tutors;
 		this.user = tutors.get(index);
 		numberLabel = new JLabel(""+ (index+1));
@@ -41,6 +44,7 @@ public class UserMgmtComponent {
 	
 	public Component show() {
 		removeBtn.addActionListener(new RemoveBtnPressed());
+		editBtn.addActionListener(new EditBtnPressed());
 		panel.setLayout(new GridLayout(1, 5));
 		panel.add(numberLabel);
 		panel.add(nameLabel);
@@ -60,6 +64,13 @@ public class UserMgmtComponent {
 		public void actionPerformed(ActionEvent e) {
 			if (user instanceof Tutor) tutors.remove(user);
 			ScreenManager.setCurrentScreen(new TutorMgmtScreen(tutors));
+		}
+	}
+	
+	public class EditBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (user instanceof Tutor) ScreenManager.showPopup(new EditUserPopup(UserType.TUTOR, user));
+			else ScreenManager.showPopup(new EditUserPopup(UserType.TUTEE, user));
 		}
 	}
 	
