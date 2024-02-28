@@ -11,8 +11,9 @@ public class DataManager {
 	public static ArrayList<TutoringSession> sessions = new ArrayList<>();
 	public static ArrayList<ClassName> classNames = new ArrayList<>();
 	public static ArrayList<Proficiency> proficiencies = new ArrayList<>();
-	public static ArrayList<Skill> skills = new ArrayList<Skill>();
+	public static ArrayList<Skill> skills = new ArrayList<>();
 	public static ArrayList<Tutor> tutors = new ArrayList<>();
+	public static ArrayList<Tutee> tutees = new ArrayList<>();
 	
 	//Compiler causing unnecessary errors, DataManager is the only class that will touch the data files
 	@SuppressWarnings("unchecked")
@@ -22,6 +23,7 @@ public class DataManager {
 		proficiencies = (ArrayList<Proficiency>) deserialize("data/proficiencies");
 		skills = (ArrayList<Skill>) deserialize("data/skills");
 		tutors = (ArrayList<Tutor>) deserialize("data/tutors");
+		tutees = (ArrayList<Tutee>) deserialize("data/tutees");
 	}
 	
 	public static void save() {
@@ -30,6 +32,7 @@ public class DataManager {
 		serialize(proficiencies, "data/proficiencies");
 		serialize(skills, "data/skills");
 		serialize(tutors, "data/tutors");
+		serialize(tutees, "data/tutees");
 	}
 
 
