@@ -23,10 +23,18 @@ public class TutorMgmtScreen extends Screen {
 	private final JButton saveBtn = new JButton("Save");
 	private final JButton addBtn = new JButton("Add user");
 	private final JButton filterBtn = new JButton("Filter");
-	private final ArrayList<Tutor> tutors;
+	private ArrayList<Tutor> tutors;
 	
 	public TutorMgmtScreen(ArrayList<Tutor> tutors) {
+		loadData(tutors);
+	}
+	
+	public void loadData(ArrayList<Tutor> tutors) {
 		this.tutors = tutors;
+	}
+	
+	public ArrayList<Tutor> getData() {
+		return this.tutors;
 	}
 	
 	public JComponent show(JPanel panel) {

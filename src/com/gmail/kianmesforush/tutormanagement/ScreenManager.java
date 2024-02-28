@@ -1,6 +1,7 @@
 package com.gmail.kianmesforush.tutormanagement;
 
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
+import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
@@ -84,5 +85,9 @@ public class ScreenManager {
 	public static void closePopup() {
 		popupFrame.setVisible(false);
 		setCurrentScreen(currentScreen);
+	}
+	
+	public static Screen getCurrentScreen() {
+		return currentScreen;
 	}
 }
