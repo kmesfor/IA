@@ -3,7 +3,6 @@ package com.gmail.kianmesforush.tutormanagement;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
