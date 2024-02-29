@@ -5,8 +5,7 @@
     [x] Placeholder panels for each button
     [x] Working back/exit button
 [x] Data management class
-[] Clean exit function - cleanly saves data
-[] Tutor management GUI with list of tutors
-[] Add tutor functionality
+[x] Clean exit function - cleanly saves data
+[x] Tutor management GUI with list of tutors
+[x] Add tutor functionality
     [x] ScreenManagement overlay function (popup)
-[] add titles to panels
