@@ -1,13 +1,15 @@
 package com.gmail.kianmesforush.tutormanagement;
 
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
-import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class ScreenManager {
+	//The name of the both JFrames
+	private static final String FRAME_NAME = "Tutoring Management";
+	
 	private static Screen currentScreen;
 	private static Screen currentPopup;
 	
@@ -22,7 +24,7 @@ public class ScreenManager {
 		ScreenManager.currentScreen = currentScreen;
 		
 		//Initialize a new JFrame that acts as the application's main window
-		frame = new JFrame("Tutoring Management");
+		frame = new JFrame(FRAME_NAME);
 		frame.setSize(TutorManagement.SCREEN_WIDTH, TutorManagement.SCREEN_HEIGHT);
 		frame.setLocation(TutorManagement.SCREEN_LOC_X, TutorManagement.SCREEN_LOC_Y);
 		frame.setContentPane(currentScreen.show(panel));
@@ -41,7 +43,7 @@ public class ScreenManager {
 		});
 		
 		//Initial a new hidden JFrame that acts as the application's popup window
-		popupFrame = new JFrame("Tutoring Management");
+		popupFrame = new JFrame(FRAME_NAME);
 		popupFrame.setSize(TutorManagement.POPOUT_WIDTH, TutorManagement.POPOUT_HEIGHT);
 		popupFrame.setLocation(TutorManagement.POPOUT_LOC_X, TutorManagement.POPOUT_LOC_Y);
 		popupFrame.setVisible(false);

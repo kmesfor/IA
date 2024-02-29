@@ -3,7 +3,7 @@ package com.gmail.kianmesforush.tutormanagement.popups;
 import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.*;
-import com.gmail.kianmesforush.tutormanagement.datatypes.Popup;
+import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenPopup;
 import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class EditUserPopup extends Popup {
+public class EditUserPopup extends ScreenPopup {
 	private final JLabel nameLabel = new JLabel("Name:");
 	private final JLabel availabilityLabel = new JLabel("Availability:");
 	private JLabel classesLabel;
