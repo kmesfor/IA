@@ -6,6 +6,7 @@ import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
 import com.gmail.kianmesforush.tutormanagement.datatypes.UserType;
 import com.gmail.kianmesforush.tutormanagement.popups.EditUserPopup;
+import com.gmail.kianmesforush.tutormanagement.popups.NotesPopup;
 import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;
 
 import javax.swing.*;
@@ -45,6 +46,7 @@ public class UserMgmtComponent {
 	public Component show() {
 		removeBtn.addActionListener(new RemoveBtnPressed());
 		editBtn.addActionListener(new EditBtnPressed());
+		notesBtn.addActionListener(new NotesBtnPressed());
 		panel.setLayout(new GridLayout(1, 5));
 		panel.add(numberLabel);
 		panel.add(nameLabel);
@@ -60,17 +62,23 @@ public class UserMgmtComponent {
 		
 	}
 	
-	public class RemoveBtnPressed implements ActionListener {
+	private class RemoveBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (user instanceof Tutor) tutors.remove(user);
 			ScreenManager.setCurrentScreen(new TutorMgmtScreen(tutors));
 		}
 	}
 	
-	public class EditBtnPressed implements ActionListener {
+	private class EditBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (user instanceof Tutor) ScreenManager.showPopup(new EditUserPopup(UserType.TUTOR, user));
 			else ScreenManager.showPopup(new EditUserPopup(UserType.TUTEE, user));
+		}
+	}
+	
+	private class NotesBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			ScreenManager.showPopup(new NotesPopup(user));
 		}
 	}
 	
