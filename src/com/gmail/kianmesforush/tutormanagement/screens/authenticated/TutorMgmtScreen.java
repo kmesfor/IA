@@ -22,7 +22,6 @@ public class TutorMgmtScreen extends Screen {
 	private final JButton backBtn = new JButton("Back");
 	private final JButton saveBtn = new JButton("Save");
 	private final JButton addBtn = new JButton("Add user");
-	private final JButton filterBtn = new JButton("Filter");
 	private ArrayList<Tutor> tutors;
 	
 	public TutorMgmtScreen(ArrayList<Tutor> tutors) {
@@ -60,7 +59,6 @@ public class TutorMgmtScreen extends Screen {
 		controlPanel.add(backBtn);
 		controlPanel.add(saveBtn);
 		controlPanel.add(addBtn);
-		controlPanel.add(filterBtn);
 		
 		return panel;
 	}
