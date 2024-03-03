@@ -2,12 +2,11 @@ package com.gmail.kianmesforush.tutormanagement.components;
 
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.TutorManagement;
-import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
 import com.gmail.kianmesforush.tutormanagement.datatypes.UserType;
 import com.gmail.kianmesforush.tutormanagement.popups.EditUserPopup;
 import com.gmail.kianmesforush.tutormanagement.popups.NotesPopup;
-import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;
+import com.gmail.kianmesforush.tutormanagement.screens.authenticated.UserMgmtScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 
 public class UserMgmtComponent {
 	private final User user;
-	private final ArrayList<Tutor> tutors;
+	private final ArrayList<User> users;
 	private final JPanel panel = new JPanel();
 	
 	private final JLabel numberLabel;
@@ -27,10 +26,10 @@ public class UserMgmtComponent {
 	private final JButton editBtn = new JButton("Edit");
 	private final JButton removeBtn = new JButton("Remove");
 	
-	public UserMgmtComponent(ArrayList<Tutor> tutors, int index) {
+	public UserMgmtComponent(ArrayList<User> users, int index) {
 		//TODO: change this to handle tutees as well
-		this.tutors = tutors;
-		this.user = tutors.get(index);
+		this.users = users;
+		this.user = users.get(index);
 		numberLabel = new JLabel(""+ (index+1));
 		nameLabel = new JLabel(user.getName());
 		
@@ -64,14 +63,15 @@ public class UserMgmtComponent {
 	
 	private class RemoveBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (user instanceof Tutor) tutors.remove(user);
-			ScreenManager.setCurrentScreen(new TutorMgmtScreen(tutors));
+			users.remove(user);
+			if (user.getType() == UserType.TUTOR) ScreenManager.setCurrentScreen(new UserMgmtScreen(users, UserType.TUTOR));
+			else ScreenManager.setCurrentScreen(new UserMgmtScreen(users, UserType.TUTEE));
 		}
 	}
 	
 	private class EditBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (user instanceof Tutor) ScreenManager.showPopup(new EditUserPopup(UserType.TUTOR, user));
+			if (user.getType() == UserType.TUTOR) ScreenManager.showPopup(new EditUserPopup(UserType.TUTOR, user));
 			else ScreenManager.showPopup(new EditUserPopup(UserType.TUTEE, user));
 		}
 	}
