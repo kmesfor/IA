@@ -1,10 +1,10 @@
 package com.gmail.kianmesforush.tutormanagement.popups;
 
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenPopup;
-import com.gmail.kianmesforush.tutormanagement.datatypes.Tutor;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
-import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;
+import com.gmail.kianmesforush.tutormanagement.screens.authenticated.UserMgmtScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,11 +57,10 @@ public class NotesPopup extends ScreenPopup {
 	
 	private static class BackBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (ScreenManager.getCurrentScreen() instanceof TutorMgmtScreen) {
-				ArrayList<Tutor> data = ((TutorMgmtScreen) ScreenManager.getCurrentScreen()).getData();
-				ScreenManager.setCurrentScreen(new TutorMgmtScreen(data));
-			} else {
-				//Add support for other screens using the notes popup
+			if (ScreenManager.getCurrentScreen() instanceof UserMgmtScreen) {
+				UserMgmtScreen screen = (UserMgmtScreen) ScreenManager.getCurrentScreen();
+				ArrayList<User> data = screen.getData();
+				ScreenManager.setCurrentScreen(new UserMgmtScreen(data, screen.getType()));
 			}
 		}
 	}
