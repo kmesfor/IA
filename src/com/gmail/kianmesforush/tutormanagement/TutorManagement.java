@@ -37,8 +37,8 @@ public class TutorManagement {
 		DataManager.skills.add(new Skill("Test Skill A"));
 		DataManager.skills.add(new Skill("Test Skill B"));
 		
-		DataManager.tutors.add(new Tutor("Test Tutor A"));
-		DataManager.tutors.add(new Tutor("Test Tutor B"));
+		DataManager.tutors.add(new User("Test Tutor A", UserType.TUTOR));
+		DataManager.tutors.add(new User("Test Tutor B", UserType.TUTOR));
 		
 		//Uses the last added index (the new example tutors)
 		DataManager.tutors.get(DataManager.tutors.size() - 1).availability.add(DataManager.sessions.get(DataManager.sessions.size() - 1));
@@ -48,8 +48,8 @@ public class TutorManagement {
 		DataManager.tutors.get(DataManager.tutors.size() - 1).notes.add("Test Note A");
 		DataManager.tutors.get(DataManager.tutors.size() - 1).notes.add("Test Note B");
 		
-		DataManager.tutees.add(new Tutee("Test Tutee A"));
-		DataManager.tutees.add(new Tutee("Test Tutee B"));
+		DataManager.tutees.add(new User("Test Tutee A", UserType.TUTEE));
+		DataManager.tutees.add(new User("Test Tutee B", UserType.TUTEE));
 		
 		//Uses the last added index (the new example tutors)
 		DataManager.tutees.get(DataManager.tutees.size() - 1).availability.add(DataManager.sessions.get(DataManager.sessions.size() - 1));
