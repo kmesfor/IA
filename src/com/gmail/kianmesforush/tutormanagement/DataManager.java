@@ -12,8 +12,8 @@ public class DataManager {
 	public static ArrayList<ClassName> classNames = new ArrayList<>();
 	public static ArrayList<Proficiency> proficiencies = new ArrayList<>();
 	public static ArrayList<Skill> skills = new ArrayList<>();
-	public static ArrayList<Tutor> tutors = new ArrayList<>();
-	public static ArrayList<Tutee> tutees = new ArrayList<>();
+	public static ArrayList<User> tutors = new ArrayList<>();
+	public static ArrayList<User> tutees = new ArrayList<>();
 	
 	//Compiler causing unnecessary errors, DataManager is the only class that will touch the data files
 	@SuppressWarnings("unchecked")
@@ -22,8 +22,8 @@ public class DataManager {
 		classNames = (ArrayList<ClassName>) deserialize("data/classes");
 		proficiencies = (ArrayList<Proficiency>) deserialize("data/proficiencies");
 		skills = (ArrayList<Skill>) deserialize("data/skills");
-		tutors = (ArrayList<Tutor>) deserialize("data/tutors");
-		tutees = (ArrayList<Tutee>) deserialize("data/tutees");
+		tutors = (ArrayList<User>) deserialize("data/tutors");
+		tutees = (ArrayList<User>) deserialize("data/tutees");
 	}
 	
 	public static void save() {
