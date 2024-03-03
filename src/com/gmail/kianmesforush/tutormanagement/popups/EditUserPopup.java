@@ -4,7 +4,7 @@ import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.*;
 import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenPopup;
-import com.gmail.kianmesforush.tutormanagement.screens.authenticated.TutorMgmtScreen;
+import com.gmail.kianmesforush.tutormanagement.screens.authenticated.UserMgmtScreen;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -27,6 +27,7 @@ public class EditUserPopup extends ScreenPopup {
 	private final JButton cancelBtn = new JButton("Cancel");
 	
 	private final JPanel namePanel = new JPanel();
+	private final JPanel upperPanel = new JPanel();
 	private final JPanel btnsPanel = new JPanel();
 	private final JPanel contentPanel = new JPanel();
 	
@@ -53,6 +54,10 @@ public class EditUserPopup extends ScreenPopup {
 		namePanel.add(nameLabel, BorderLayout.WEST);
 		namePanel.add(nameField, BorderLayout.CENTER);
 		
+		upperPanel.setLayout(new BorderLayout());
+		upperPanel.add(namePanel, BorderLayout.NORTH);
+		upperPanel.add(new JLabel("User type: " + userType));
+		
 		cancelBtn.addActionListener(new CancelBtnPressed());
 		saveBtn.addActionListener(new SaveBtnPressed());
 		btnsPanel.add(saveBtn);
@@ -65,7 +70,7 @@ public class EditUserPopup extends ScreenPopup {
 		populateCheckboxes();
 		
 		panel.setLayout(new BorderLayout());
-		panel.add(namePanel, BorderLayout.NORTH);
+		panel.add(upperPanel, BorderLayout.NORTH);
 		panel.add(btnsPanel, BorderLayout.SOUTH);
 		panel.add(new JScrollPane(contentPanel), BorderLayout.CENTER);
 		
@@ -139,7 +144,7 @@ public class EditUserPopup extends ScreenPopup {
 	private class SaveBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//TODO: make this work for editing user data as well by adding a isNewUser field? and changing accordingly?
-			User user = (userType == UserType.TUTOR) ? new Tutor(nameField.getText()) : new Tutee(nameField.getText());
+			User user = new User(nameField.getText(), userType);
 			availabilityCheckboxes.forEach((session, checkbox) -> {
 				if (checkbox.isSelected()) user.availability.add(session);
 			});
@@ -152,22 +157,22 @@ public class EditUserPopup extends ScreenPopup {
 			proficiencyCheckboxes.forEach((proficiency, checkbox) -> {
 				if (checkbox.isSelected()) user.proficiencies.add(proficiency);
 			});
-			
-			if (userType == UserType.TUTOR && ScreenManager.getCurrentScreen() instanceof TutorMgmtScreen) {
-				// Use this instead of DataManager.tutors because this will also save any changes made previously before user was edited
-				ArrayList<Tutor> data = ((TutorMgmtScreen) ScreenManager.getCurrentScreen()).getData();
+			if (ScreenManager.getCurrentScreen() instanceof UserMgmtScreen) {
+				// Use this instead of accessing DataManager because this will also account
+				// for any changes made previously before user was edited
+				ArrayList<User> data = ((UserMgmtScreen) ScreenManager.getCurrentScreen()).getData();
 				if (existingData == null) {
-					//Reload the TutorMgmtScreen with new data
-					data.add((Tutor) user);
+					data.add(user);
 				} else {
-					//Edit existing data
-					data.set(data.indexOf((Tutor) existingData), (Tutor) user);
+					data.set(data.indexOf(existingData), user);
 				}
-				ScreenManager.setCurrentScreen(new TutorMgmtScreen(data));
-			} else {
-				//TODO: same thing but for TuteeMgmtScreen
+				if (userType == UserType.TUTOR && ((UserMgmtScreen) ScreenManager.getCurrentScreen()).getType() == UserType.TUTOR) {
+					ScreenManager.setCurrentScreen(new UserMgmtScreen(data, UserType.TUTOR));
+				} else {
+					ScreenManager.setCurrentScreen(new UserMgmtScreen(data, UserType.TUTEE));
+				}
+				ScreenManager.closePopup();
 			}
-			ScreenManager.closePopup();
 		}
 	}
 	
