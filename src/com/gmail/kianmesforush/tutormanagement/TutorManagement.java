@@ -4,29 +4,67 @@ import com.gmail.kianmesforush.tutormanagement.datatypes.*;
 import com.gmail.kianmesforush.tutormanagement.datatypes.ClassName;
 import com.gmail.kianmesforush.tutormanagement.screens.HomeScreen;
 
+/**
+ * The main class of the program.
+ */
 public class TutorManagement {
+	/**
+	 * Main screen width constant (px)
+	 */
 	public static final int SCREEN_WIDTH = 400;
+	/**
+	 * Main screen height constant (px)
+	 */
 	public static final int SCREEN_HEIGHT = 200;
+	/**
+	 * Main screen x location constant (px)
+	 */
 	public static final int SCREEN_LOC_X = 300;
+	/**
+	 * Main screen y location constant (px)
+	 */
 	public static final int SCREEN_LOC_Y = 300;
-	
+	/**
+	 * Popout screen width constant (px)
+	 */
 	public static final int POPOUT_WIDTH = 300;
+	/**
+	 * Popout screen height constant (px)
+	 */
 	public static final int POPOUT_HEIGHT = 400;
+	/**
+	 * Popout screen x location constant (px)
+	 */
 	public static final int POPOUT_LOC_X = 200;
+	/**
+	 * Popout screen y location constant(px)
+	 */
 	public static final int POPOUT_LOC_Y = 200;
 	
+	/**
+	 * Enters the Program. Initializes the DataManger and ScreenManager.
+	 * Shows the initial screen
+	 *
+	 * @param args the input arguments
+	 */
 	public static void main(String[] args) {
 		DataManager.initialize();
 		//Initialize the ScreenManager which will drive the main function of the app
 		ScreenManager.initialize(new HomeScreen());
 	}
 	
+	/**
+	 * Exit the program. Saves DataManager data
+	 */
 	public static void exit() {
 		//TODO:
 		DataManager.save();
 		System.exit(0);
 	}
 	
+	/**
+	 * Loads sample data to DataManager. Does not save unless prompted
+	 */
 	public static void loadSampleData() {
 		DataManager.sessions.add(new TutoringSession("Test Session A"));
 		DataManager.sessions.add(new TutoringSession("Test Session B"));

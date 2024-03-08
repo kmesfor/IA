@@ -6,19 +6,42 @@ import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * The static management class for the program's screens.
+ * Handles the rendering and displaying of screens and popups
+ */
 public class ScreenManager {
-	//The name of the both JFrames
+	/**
+	 * Constant for the name of the JFrame panel and popup.
+	 */
 	private static final String FRAME_NAME = "Tutoring Management";
 	
+	/**
+	 * The currently displayed screen. Used to refresh the main screen after closing a popup.
+	 * Also used in {@link ScreenManager#getCurrentScreen()}
+	 *
+	 * Note: a currentPopup variable is redundant in current use case because
+	 * popups are not refreshed. However, to add this functionality, a similar methodology
+	 * with currentScreen and {@link ScreenManager#closePopup()} could be used.
+	 */
 	private static Screen currentScreen;
-	private static Screen currentPopup;
 	
+	/**
+	 * The JFrame holding the current JPanel. Frame is reused throughout program's lifecycle
+	 */
 	private static JFrame frame;
+	/**
+	 * The JFrame holding the current popup (if active). Frame is reused throughout program's lifecycle
+	 */
 	private static JFrame popupFrame;
 	
-	private static JPanel panel = new JPanel();
-	private static JPanel popupPanel = new JPanel();
 	
+	/**
+	 * Initializes the ScreenManager's main frame and popout frame
+	 * and shows the program's first screen.
+	 *
+	 * @param currentScreen the current screen to be shown
+	 */
 	public static void initialize(Screen currentScreen) {
 		//Store arguments
 		ScreenManager.currentScreen = currentScreen;
@@ -27,7 +50,7 @@ public class ScreenManager {
 		frame = new JFrame(FRAME_NAME);
 		frame.setSize(TutorManagement.SCREEN_WIDTH, TutorManagement.SCREEN_HEIGHT);
 		frame.setLocation(TutorManagement.SCREEN_LOC_X, TutorManagement.SCREEN_LOC_Y);
-		frame.setContentPane(currentScreen.show(panel));
+		frame.setContentPane(currentScreen.show(new JPanel()));
 		frame.setVisible(true);
 		
 		//Ignore close operation to shut down application cleanly instead
@@ -50,7 +73,12 @@ public class ScreenManager {
 		popupFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
-	//Display a new screen by first removing the previous screen and then initializing the next
+	/**
+	 * Displays a new screen by clearing the previous frame and initializing the next.
+	 * Also removes the outstanding popup (if applicable).
+	 *
+	 * @param screen the screen to be shown
+	 */
 	public static void setCurrentScreen(Screen screen) {
 		// https://stackoverflow.com/questions/21365570/how-to-dispose-a-jpanel-jpanel1-dispose-or-equivalent
 		// https://stackoverflow.com/questions/17608421/how-to-reload-a-jpanel
@@ -59,13 +87,15 @@ public class ScreenManager {
 		popupFrame.setVisible(false);
 		
 		//Clean the currentScreen panel and frame
-		panel = new JPanel();
 		currentScreen = screen;
-		frame.setContentPane(currentScreen.show(panel));
+		frame.setContentPane(currentScreen.show(new JPanel()));
 		frame.repaint();
 		frame.revalidate();
 	}
 	
+	/**
+	 * Exits the ScreenManager and calls {@link TutorManagement#exit()}
+	 */
 	public static void exit() {
 		//TODO: handle cleanup code
 		
@@ -73,22 +103,32 @@ public class ScreenManager {
 		TutorManagement.exit();
 	}
 	
-	// Clean old popups and create a new one
+	/**
+	 * Show a new popup. Cleans the old popup (if applicable)
+	 * and establishes a new one
+	 *
+	 * @param popup the popup
+	 */
 	public static void showPopup(Screen popup) {
-		popupPanel = new JPanel();
-		currentPopup = popup;
-		popupFrame.setContentPane(currentPopup.show(popupPanel));
+		popupFrame.setContentPane(popup.show(new JPanel()));
 		popupFrame.repaint();
 		popupFrame.revalidate();
 		popupFrame.setVisible(true);
 	}
-
-	// Close the current popup by reloading the current screen which will remove and re-render the panels
+	
+	/**
+	 * Close the current popup by reloading the current screen. This will re-render the currentScreen
+	 */
 	public static void closePopup() {
 		popupFrame.setVisible(false);
 		setCurrentScreen(currentScreen);
 	}
 	
+	/**
+	 * Gets current screen.
+	 *
+	 * @return the current screen
+	 */
 	public static Screen getCurrentScreen() {
 		return currentScreen;
 	}
