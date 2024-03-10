@@ -17,21 +17,19 @@ import java.util.ArrayList;
 public class UserMgmtComponent {
 	private final User user;
 	private final ArrayList<User> users;
-	private final JPanel panel = new JPanel();
-	
-	private final JLabel numberLabel;
-	private final JLabel nameLabel;
-	private final JButton notesBtn = new JButton("Notes");
-	//TODO: is the edit btn going to have a problem bc user elements are passed by reference?
-	private final JButton editBtn = new JButton("Edit");
-	private final JButton removeBtn = new JButton("Remove");
+	public final JPanel panel = new JPanel();
 	
 	public UserMgmtComponent(ArrayList<User> users, int index) {
 		//TODO: change this to handle tutees as well
 		this.users = users;
 		this.user = users.get(index);
-		numberLabel = new JLabel(""+ (index+1));
-		nameLabel = new JLabel(user.getName());
+		
+		JLabel numberLabel = new JLabel("" + (index + 1));
+		JLabel nameLabel = new JLabel(user.getName());
+		JButton notesBtn = new JButton("Notes");
+		//TODO: is the edit btn going to have a problem bc user elements are passed by reference?
+		JButton editBtn = new JButton("Edit");
+		JButton removeBtn = new JButton("Remove");
 		
 		numberLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
 		numberLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -40,12 +38,11 @@ public class UserMgmtComponent {
 		nameLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setVerticalAlignment(SwingConstants.CENTER);
-	}
-	
-	public Component show() {
+		
 		removeBtn.addActionListener(new RemoveBtnPressed());
 		editBtn.addActionListener(new EditBtnPressed());
 		notesBtn.addActionListener(new NotesBtnPressed());
+		
 		panel.setLayout(new GridLayout(1, 5));
 		panel.add(numberLabel);
 		panel.add(nameLabel);
@@ -57,8 +54,6 @@ public class UserMgmtComponent {
 		panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		//https://stackoverflow.com/questions/22920046/how-to-set-fix-size-of-jlabel
 		panel.setPreferredSize(new Dimension(TutorManagement.SCREEN_WIDTH - 50, 40));
-		return panel;
-		
 	}
 	
 	private class RemoveBtnPressed implements ActionListener {

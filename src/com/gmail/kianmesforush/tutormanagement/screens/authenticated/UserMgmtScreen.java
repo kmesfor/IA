@@ -60,7 +60,7 @@ public class UserMgmtScreen extends Screen {
 
 		listPanel.setLayout(new GridLayout(users.size(), 1));
 		for (int i = 0; i < users.size(); i++) {
-			listPanel.add(new UserMgmtComponent(users, i).show());
+			listPanel.add(new UserMgmtComponent(users, i).panel);
 		}
 
 		backBtn.addActionListener(new BackBtnPressed());
