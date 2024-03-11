@@ -7,10 +7,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class DataManager {
-	public static ArrayList<TutoringSession> sessions = new ArrayList<>();
-	public static ArrayList<ClassName> classNames = new ArrayList<>();
-	public static ArrayList<Proficiency> proficiencies = new ArrayList<>();
-	public static ArrayList<Skill> skills = new ArrayList<>();
+	public static ArrayList<GeneralData> sessions = new ArrayList<>();
+	public static ArrayList<GeneralData> classNames = new ArrayList<>();
+	public static ArrayList<GeneralData> proficiencies = new ArrayList<>();
+	public static ArrayList<GeneralData> skills = new ArrayList<>();
 	public static ArrayList<User> tutors = new ArrayList<>();
 	public static ArrayList<User> tutees = new ArrayList<>();
 	
@@ -21,10 +21,10 @@ public class DataManager {
 	//thus the cast is safe as long as serialization and deserialization use the same type
 	@SuppressWarnings("unchecked")
 	public static void initialize() {
-		sessions = (ArrayList<TutoringSession>) deserialize("data/sessions");
-		classNames = (ArrayList<ClassName>) deserialize("data/classes");
-		proficiencies = (ArrayList<Proficiency>) deserialize("data/proficiencies");
-		skills = (ArrayList<Skill>) deserialize("data/skills");
+		sessions = (ArrayList<GeneralData>) deserialize("data/sessions");
+		classNames = (ArrayList<GeneralData>) deserialize("data/classes");
+		proficiencies = (ArrayList<GeneralData>) deserialize("data/proficiencies");
+		skills = (ArrayList<GeneralData>) deserialize("data/skills");
 		tutors = (ArrayList<User>) deserialize("data/tutors");
 		tutees = (ArrayList<User>) deserialize("data/tutees");
 	}

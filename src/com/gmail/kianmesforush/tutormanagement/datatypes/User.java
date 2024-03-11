@@ -10,10 +10,10 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private final String name;
 	private final UserType type;
-	public final ArrayList<TutoringSession> availability = new ArrayList<>();
-	public final ArrayList<ClassName> classNames = new ArrayList<>();
-	public final ArrayList<Skill> skills = new ArrayList<>();
-	public final ArrayList<Proficiency> proficiencies = new ArrayList<>();
+	public final ArrayList<GeneralData> availability = new ArrayList<>();
+	public final ArrayList<GeneralData> classNames = new ArrayList<>();
+	public final ArrayList<GeneralData> skills = new ArrayList<>();
+	public final ArrayList<GeneralData> proficiencies = new ArrayList<>();
 	public final ArrayList<String> notes = new ArrayList<>();
 	
 	public User(String name, UserType type) {

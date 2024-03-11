@@ -1,7 +1,6 @@
 package com.gmail.kianmesforush.tutormanagement;
 //TODO: rename the package to not have any associating characteristics?
 import com.gmail.kianmesforush.tutormanagement.datatypes.*;
-import com.gmail.kianmesforush.tutormanagement.datatypes.ClassName;
 import com.gmail.kianmesforush.tutormanagement.screens.HomeScreen;
 
 /**
@@ -66,14 +65,14 @@ public class TutorManagement {
 	 * Loads sample data to DataManager. Does not save unless prompted
 	 */
 	public static void loadSampleData() {
-		DataManager.sessions.add(new TutoringSession("Test Session A"));
-		DataManager.sessions.add(new TutoringSession("Test Session B"));
-		DataManager.classNames.add(new ClassName("Test Class A"));
-		DataManager.classNames.add(new ClassName("Test Class B"));
-		DataManager.proficiencies.add(new Proficiency("Test Proficiency A"));
-		DataManager.proficiencies.add(new Proficiency("Test Proficiency B"));
-		DataManager.skills.add(new Skill("Test Skill A"));
-		DataManager.skills.add(new Skill("Test Skill B"));
+		DataManager.sessions.add(new GeneralData("Test Session A", GeneralDataType.SESSION));
+		DataManager.sessions.add(new GeneralData("Test Session B", GeneralDataType.SESSION));
+		DataManager.classNames.add(new GeneralData("Test Class A", GeneralDataType.CLASS));
+		DataManager.classNames.add(new GeneralData("Test Class B", GeneralDataType.CLASS));
+		DataManager.proficiencies.add(new GeneralData("Test Proficiency A", GeneralDataType.PROFICIENCY));
+		DataManager.proficiencies.add(new GeneralData("Test Proficiency B", GeneralDataType.PROFICIENCY));
+		DataManager.skills.add(new GeneralData("Test Skill A", GeneralDataType.SKILL));
+		DataManager.skills.add(new GeneralData("Test Skill B", GeneralDataType.SKILL));
 		
 		DataManager.tutors.add(new User("Test Tutor A", UserType.TUTOR));
 		DataManager.tutors.add(new User("Test Tutor B", UserType.TUTOR));

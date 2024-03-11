@@ -31,10 +31,10 @@ public class EditUserPopup extends ScreenPopup {
 	private final JPanel btnsPanel = new JPanel();
 	private final JPanel contentPanel = new JPanel();
 	
-	private final HashMap<TutoringSession, JCheckBox> availabilityCheckboxes = new HashMap<>();
-	private final HashMap<ClassName, JCheckBox> classCheckboxes = new HashMap<>();
-	private final HashMap<Skill, JCheckBox> skillCheckboxes = new HashMap<>();
-	private final HashMap<Proficiency, JCheckBox> proficiencyCheckboxes = new HashMap<>();
+	private final HashMap<GeneralData, JCheckBox> availabilityCheckboxes = new HashMap<>();
+	private final HashMap<GeneralData, JCheckBox> classCheckboxes = new HashMap<>();
+	private final HashMap<GeneralData, JCheckBox> skillCheckboxes = new HashMap<>();
+	private final HashMap<GeneralData, JCheckBox> proficiencyCheckboxes = new HashMap<>();
 	
 	private final UserType userType;
 	private User existingData = null;
@@ -108,22 +108,22 @@ public class EditUserPopup extends ScreenPopup {
 	
 	private void populateCheckboxes() {
 		contentPanel.add(availabilityLabel);
-		for (TutoringSession session : DataManager.sessions) {
+		for (GeneralData session : DataManager.sessions) {
 			availabilityCheckboxes.put(session, new JCheckBox(session.getInfo()));
 			contentPanel.add(availabilityCheckboxes.get(session));
 		}
 		contentPanel.add(classesLabel);
-		for (ClassName className : DataManager.classNames) {
+		for (GeneralData className : DataManager.classNames) {
 			classCheckboxes.put(className, new JCheckBox(className.getInfo()));
 			contentPanel.add(classCheckboxes.get(className));
 		}
 		contentPanel.add(skillsLabel);
-		for (Skill skill : DataManager.skills) {
+		for (GeneralData skill : DataManager.skills) {
 			skillCheckboxes.put(skill, new JCheckBox(skill.getInfo()));
 			contentPanel.add(skillCheckboxes.get(skill));
 		}
 		contentPanel.add(proficienciesLabel);
-		for (Proficiency proficiency : DataManager.proficiencies) {
+		for (GeneralData proficiency : DataManager.proficiencies) {
 			proficiencyCheckboxes.put(proficiency, new JCheckBox(proficiency.getInfo()));
 			contentPanel.add(proficiencyCheckboxes.get(proficiency));
 		}
