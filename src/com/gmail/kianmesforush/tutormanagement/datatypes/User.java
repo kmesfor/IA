@@ -16,6 +16,19 @@ public class User implements Serializable {
 	public final ArrayList<GeneralData> proficiencies = new ArrayList<>();
 	public final ArrayList<String> notes = new ArrayList<>();
 	
+	/**
+	 * A instantiation method intended to create a deep clone of a User.
+	 * @param user the user to clone
+	 */
+	public User(User user) {
+		this.name = user.getName();
+		this.type = user.getType();
+		availability.addAll(user.availability);
+		classNames.addAll(user.classNames);
+		skills.addAll(user.skills);
+		proficiencies.addAll(user.proficiencies);
+		notes.addAll(user.notes);
+	}
 	public User(String name, UserType type) {
 		this.name = name;
 		this.type = type;
