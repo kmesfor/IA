@@ -1,5 +1,7 @@
 package com.gmail.kianmesforush.tutormanagement.datatypes;
 
+import com.gmail.kianmesforush.tutormanagement.DataManager;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class User implements Serializable {
 	public final ArrayList<String> notes = new ArrayList<>();
 	
 	/**
-	 * A instantiation method intended to create a deep clone of a User.
+	 * An instantiation method intended to create a deep clone of a User.
 	 * @param user the user to clone
 	 */
 	public User(User user) {
@@ -40,5 +42,21 @@ public class User implements Serializable {
 	
 	public UserType getType() {
 		return type;
+	}
+	
+	/**
+	 * A method to check if a user is included in a set of filters.
+	 * @param filters A list of GeneralDataType(s) that a user must have to pass.
+	 * @return A boolean value representing if a user passes a set of filters
+	 * Returns True if the user applies. Returns false is a user does not.
+	 */
+	public Boolean isIncluded(ArrayList<GeneralData> filters) {
+		for (GeneralData filter : filters) {
+			if (filter.getType() == GeneralDataType.CLASS && (!classNames.contains(filter))) return false;
+			if (filter.getType() == GeneralDataType.SESSION && (!availability.contains(filter))) return false;
+			if (filter.getType() == GeneralDataType.SKILL && (!skills.contains(filter))) return false;
+			if (filter.getType() == GeneralDataType.PROFICIENCY && (!proficiencies.contains(filter))) return false;
+		}
+		return true;
 	}
 }
