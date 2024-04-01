@@ -85,22 +85,22 @@ public class EditUserPopup extends ScreenPopup {
 	private void fillData(User userData) {
 		nameField.setText(userData.getName());
 		availabilityCheckboxes.forEach((session, checkbox) ->{
-			if (userData.availability.contains(session)) {
+			if (DataManager.listContains(userData.availability, session)) {
 				checkbox.setSelected(true);
 			}
 		});
 		classCheckboxes.forEach((className, checkbox) ->{
-			if (userData.classNames.contains(className)) {
+			if (DataManager.listContains(userData.classNames, className)) {
 				checkbox.setSelected(true);
 			}
 		});
 		skillCheckboxes.forEach((skill, checkbox) ->{
-			if (userData.skills.contains(skill)) {
+			if (DataManager.listContains(userData.skills, skill)) {
 				checkbox.setSelected(true);
 			}
 		});
 		proficiencyCheckboxes.forEach((proficiency, checkbox) ->{
-			if (userData.proficiencies.contains(proficiency)) {
+			if (DataManager.listContains(userData.proficiencies, proficiency)) {
 				checkbox.setSelected(true);
 			}
 		});
@@ -143,7 +143,6 @@ public class EditUserPopup extends ScreenPopup {
 	
 	private class SaveBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//TODO: make this work for editing user data as well by adding a isNewUser field? and changing accordingly?
 			User user = new User(nameField.getText(), userType);
 			availabilityCheckboxes.forEach((session, checkbox) -> {
 				if (checkbox.isSelected()) user.availability.add(session);

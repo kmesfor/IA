@@ -52,11 +52,35 @@ public class User implements Serializable {
 	 */
 	public Boolean isIncluded(ArrayList<GeneralData> filters) {
 		for (GeneralData filter : filters) {
-			if (filter.getType() == GeneralDataType.CLASS && (!classNames.contains(filter))) return false;
-			if (filter.getType() == GeneralDataType.SESSION && (!availability.contains(filter))) return false;
-			if (filter.getType() == GeneralDataType.SKILL && (!skills.contains(filter))) return false;
-			if (filter.getType() == GeneralDataType.PROFICIENCY && (!proficiencies.contains(filter))) return false;
+			if (filter.getType() == GeneralDataType.CLASS && (!DataManager.listContains(classNames, filter))) return false;
+			if (filter.getType() == GeneralDataType.SESSION && (!DataManager.listContains(availability, filter))) return false;
+			if (filter.getType() == GeneralDataType.SKILL && (!DataManager.listContains(skills, filter))) return false;
+			if (filter.getType() == GeneralDataType.PROFICIENCY && (!DataManager.listContains(proficiencies, filter))) return false;
 		}
 		return true;
+	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("\n-----\n")
+				.append("Object: ")
+				.append(this.hashCode())
+				.append("\n")
+				.append("Name: ")
+				.append(getName())
+				.append("\n")
+				.append("Type: ")
+				.append(getType())
+				.append("\n")
+				.append("Classes:");
+		classNames.forEach(className -> builder.append(className.getInfo()).append(", "));
+		builder.append("\nSessions:");
+		availability.forEach(session -> builder.append(session.getInfo()).append(", "));
+		builder.append("\nSkills:");
+		skills.forEach(skill -> builder.append(skill.getInfo()).append(", "));
+		builder.append("\nProficiencies:");
+		proficiencies.forEach(proficiency -> builder.append(proficiency.getInfo()).append(", "));
+		
+		return builder.toString();
 	}
 }
