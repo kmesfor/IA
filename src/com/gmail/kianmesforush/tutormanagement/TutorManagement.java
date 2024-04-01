@@ -65,36 +65,72 @@ public class TutorManagement {
 	 * Loads sample data to DataManager. Does not save unless prompted
 	 */
 	public static void loadSampleData() {
-		DataManager.sessions.add(new GeneralData("Test Session A", GeneralDataType.SESSION));
-		DataManager.sessions.add(new GeneralData("Test Session B", GeneralDataType.SESSION));
-		DataManager.classNames.add(new GeneralData("Test Class A", GeneralDataType.CLASS));
-		DataManager.classNames.add(new GeneralData("Test Class B", GeneralDataType.CLASS));
-		DataManager.proficiencies.add(new GeneralData("Test Proficiency A", GeneralDataType.PROFICIENCY));
-		DataManager.proficiencies.add(new GeneralData("Test Proficiency B", GeneralDataType.PROFICIENCY));
-		DataManager.skills.add(new GeneralData("Test Skill A", GeneralDataType.SKILL));
-		DataManager.skills.add(new GeneralData("Test Skill B", GeneralDataType.SKILL));
+		User john = new User("John", UserType.TUTOR);
+		User bob = new User("Bob", UserType.TUTOR);
+		User paul = new User("Paul", UserType.TUTOR);
 		
-		DataManager.tutors.add(new User("Test Tutor A", UserType.TUTOR));
-		DataManager.tutors.add(new User("Test Tutor B", UserType.TUTOR));
+		User sarah = new User("Sarah", UserType.TUTEE);
+		User alice = new User("Alice", UserType.TUTEE);
+		User holly = new User("Holly", UserType.TUTEE);
 		
-		//Uses the last added index (the new example tutors)
-		DataManager.tutors.get(DataManager.tutors.size() - 1).availability.add(DataManager.sessions.get(DataManager.sessions.size() - 1));
-		DataManager.tutors.get(DataManager.tutors.size() - 1).classNames.add(DataManager.classNames.get(DataManager.classNames.size() - 1));
-		DataManager.tutors.get(DataManager.tutors.size() - 1).proficiencies.add(DataManager.proficiencies.get(DataManager.proficiencies.size() - 1));
-		DataManager.tutors.get(DataManager.tutors.size() - 1).skills.add(DataManager.skills.get(DataManager.skills.size() - 1));
-		DataManager.tutors.get(DataManager.tutors.size() - 1).notes.add("Test Note A");
-		DataManager.tutors.get(DataManager.tutors.size() - 1).notes.add("Test Note B");
+		GeneralData session1 = new GeneralData("Jan 1 @ 5pm", GeneralDataType.SESSION);
+		GeneralData session2 = new GeneralData("Jan 3 @ 7pm", GeneralDataType.SESSION);
 		
-		DataManager.tutees.add(new User("Test Tutee A", UserType.TUTEE));
-		DataManager.tutees.add(new User("Test Tutee B", UserType.TUTEE));
+		GeneralData class1 = new GeneralData("English", GeneralDataType.CLASS);
+		GeneralData class2 = new GeneralData("Math", GeneralDataType.CLASS);
 		
-		//Uses the last added index (the new example tutors)
-		DataManager.tutees.get(DataManager.tutees.size() - 1).availability.add(DataManager.sessions.get(DataManager.sessions.size() - 1));
-		DataManager.tutees.get(DataManager.tutees.size() - 1).classNames.add(DataManager.classNames.get(DataManager.classNames.size() - 1));
-		DataManager.tutees.get(DataManager.tutees.size() - 1).proficiencies.add(DataManager.proficiencies.get(DataManager.proficiencies.size() - 1));
-		DataManager.tutees.get(DataManager.tutees.size() - 1).skills.add(DataManager.skills.get(DataManager.skills.size() - 1));
-		DataManager.tutees.get(DataManager.tutees.size() - 1).notes.add("Test Note A");
-		DataManager.tutees.get(DataManager.tutees.size() - 1).notes.add("Test Note B");
+		GeneralData prof1 = new GeneralData("Data Analysis", GeneralDataType.PROFICIENCY);
+		GeneralData prof2 = new GeneralData("Data Entry", GeneralDataType.PROFICIENCY);
+		
+		GeneralData skill1 = new GeneralData("Excel", GeneralDataType.SKILL);
+		GeneralData skill2 = new GeneralData("Word", GeneralDataType.SKILL);
+		
+		DataManager.sessions.add(session1);
+		DataManager.sessions.add(session2);
+		DataManager.classNames.add(class1);
+		DataManager.classNames.add(class2);
+		DataManager.proficiencies.add(prof1);
+		DataManager.proficiencies.add(prof2);
+		DataManager.skills.add(skill1);
+		DataManager.skills.add(skill2);
+		
+		john.availability.add(session1);
+		john.availability.add(session2);
+		john.classNames.add(class1);
+		john.classNames.add(class2);
+		john.proficiencies.add(prof1);
+		john.proficiencies.add(prof2);
+		john.skills.add(skill1);
+		john.skills.add(skill2);
+		john.notes.add("Works well in groups");
+		
+		bob.availability.add(session1);
+		bob.classNames.add(class1);
+		bob.proficiencies.add(prof1);
+		bob.skills.add(skill1);
+		
+		DataManager.tutors.add(john);
+		DataManager.tutors.add(bob);
+		DataManager.tutors.add(paul);
+		
+		sarah.availability.add(session1);
+		sarah.availability.add(session2);
+		sarah.classNames.add(class1);
+		sarah.classNames.add(class2);
+		sarah.proficiencies.add(prof1);
+		sarah.proficiencies.add(prof2);
+		sarah.skills.add(skill1);
+		sarah.skills.add(skill2);
+		sarah.notes.add("Works well in groups");
+		
+		alice.availability.add(session1);
+		alice.classNames.add(class1);
+		alice.proficiencies.add(prof1);
+		alice.skills.add(skill1);
+		
+		DataManager.tutees.add(sarah);
+		DataManager.tutees.add(alice);
+		DataManager.tutees.add(holly);
 	}
 	
 }
