@@ -79,7 +79,6 @@ public class SearchPopup extends ScreenPopup {
 	private void populateCheckboxes() {
 		upperPanel.add(availabilityLabel);
 		for (GeneralData session : DataManager.sessions) {
-			upperPanel.add(checkbox(session));
 			availabilityCheckboxes.put(session, checkbox(session));
 			upperPanel.add(availabilityCheckboxes.get(session));
 		}
@@ -133,7 +132,7 @@ public class SearchPopup extends ScreenPopup {
 		}
 		
 		public void actionPerformed(ActionEvent e) {
-			if (checkbox.isEnabled()) {
+			if (checkbox.isSelected()) {
 				filters.add(filter);
 			} else {
 				filters.remove(filter);
