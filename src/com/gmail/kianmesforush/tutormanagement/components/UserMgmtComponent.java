@@ -27,7 +27,6 @@ public class UserMgmtComponent {
 		JLabel numberLabel = new JLabel("" + (index + 1));
 		JLabel nameLabel = new JLabel(user.getName());
 		JButton notesBtn = new JButton("Notes");
-		//TODO: is the edit btn going to have a problem bc user elements are passed by reference?
 		JButton editBtn = new JButton("Edit");
 		JButton removeBtn = new JButton("Remove");
 		
