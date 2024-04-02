@@ -13,6 +13,7 @@ public class DataManager {
 	public static ArrayList<GeneralData> skills = new ArrayList<>();
 	public static ArrayList<User> tutors = new ArrayList<>();
 	public static ArrayList<User> tutees = new ArrayList<>();
+	public static ArrayList<Appointment> appointments = new ArrayList<>();
 	
 	/**
 	 * Initialize the DataManager by deserializing field data located in the data/ directory
@@ -27,6 +28,7 @@ public class DataManager {
 		skills = (ArrayList<GeneralData>) deserialize("data/skills");
 		tutors = (ArrayList<User>) deserialize("data/tutors");
 		tutees = (ArrayList<User>) deserialize("data/tutees");
+		appointments = (ArrayList<Appointment>) deserialize("data/appointments");
 	}
 	
 	/**
@@ -39,6 +41,7 @@ public class DataManager {
 		serialize(skills, "data/skills");
 		serialize(tutors, "data/tutors");
 		serialize(tutees, "data/tutees");
+		serialize(appointments, "data/appointments");
 	}
 	
 	/* The usage of UUIDs and comparing UUIDs for GeneralData is necessary to ensure that data is persistent.
@@ -65,6 +68,13 @@ public class DataManager {
 	public static Boolean listContains(ArrayList<GeneralData> list, GeneralData data) {
 		for (GeneralData listElement : list) {
 			if (listElement.getUUID().equals(data.getUUID())) return true;
+		}
+		return false;
+	}
+	
+	public static Boolean listContains(ArrayList<User> list, User user) {
+		for (User listElement : list) {
+			if (listElement.getUUID().equals(user.getUUID())) return true;
 		}
 		return false;
 	}
