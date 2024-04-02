@@ -15,7 +15,7 @@ public class AuthUserPrimaryScreen extends Screen {
 	private final JButton tutorMgmtBtn = new JButton("Tutor Management");
 	private final JButton tuteeMgmtBtn = new JButton("Tutee Management");
 	private final JButton generalMgmtBtn = new JButton("General Management");
-	private final JButton createAptBtn = new JButton("Create Appointment");
+	private final JButton manageAptsBtn = new JButton("Manage Appointments");
 	private final JButton viewHoursBtn = new JButton("View completed tutoring hours");
 	private final JButton backBtn = new JButton("Back");
 	
@@ -24,14 +24,14 @@ public class AuthUserPrimaryScreen extends Screen {
 		tutorMgmtBtn.addActionListener(new TutorMgmtBtnPressed());
 		tuteeMgmtBtn.addActionListener(new TuteeMgmtBtnPressed());
 		generalMgmtBtn.addActionListener(new GeneralMgmtButtonPressed());
-		createAptBtn.addActionListener(new CreateAptBtnPressed());
+		manageAptsBtn.addActionListener(new ManageAptBtnPressed());
 		viewHoursBtn.addActionListener(new ViewHoursBtnPressed());
 		backBtn.addActionListener(new BackBtnPressed());
 		
 		panel.add(tutorMgmtBtn);
 		panel.add(tuteeMgmtBtn);
 		panel.add(generalMgmtBtn);
-		panel.add(createAptBtn);
+		panel.add(manageAptsBtn);
 		panel.add(viewHoursBtn);
 		panel.add(backBtn);
 		
@@ -52,8 +52,8 @@ public class AuthUserPrimaryScreen extends Screen {
 		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new GeneralMgmtScreen()); }
 	}
 	
-	private static class CreateAptBtnPressed implements ActionListener {
-		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new CreateAptScreen()); }
+	private static class ManageAptBtnPressed implements ActionListener {
+		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new ManageAptScreen()); }
 	}
 	
 	private static class ViewHoursBtnPressed implements ActionListener {
