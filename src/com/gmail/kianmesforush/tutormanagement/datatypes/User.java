@@ -5,6 +5,7 @@ import com.gmail.kianmesforush.tutormanagement.DataManager;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class User implements Serializable {
 	//https://www.tutorialspoint.com/java/java_serialization.htm
@@ -12,6 +13,9 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private final String name;
 	private final UserType type;
+	private int hoursCompleted = 0;
+	private String uniqueID = UUID.randomUUID().toString();
+	
 	public final ArrayList<GeneralData> availability = new ArrayList<>();
 	public final ArrayList<GeneralData> classNames = new ArrayList<>();
 	public final ArrayList<GeneralData> skills = new ArrayList<>();
@@ -25,6 +29,8 @@ public class User implements Serializable {
 	public User(User user) {
 		this.name = user.getName();
 		this.type = user.getType();
+		this.uniqueID = user.getUUID();
+		this.hoursCompleted = user.getHoursCompleted();
 		availability.addAll(user.availability);
 		classNames.addAll(user.classNames);
 		skills.addAll(user.skills);
@@ -42,6 +48,18 @@ public class User implements Serializable {
 	
 	public UserType getType() {
 		return type;
+	}
+	
+	public int getHoursCompleted() {
+		return hoursCompleted;
+	}
+	
+	public void addHours(int hours) {
+		this.hoursCompleted += hours;
+	}
+	
+	public String getUUID() {
+		return uniqueID;
 	}
 	
 	/**
