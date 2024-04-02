@@ -94,11 +94,36 @@ public class DataMgmtPopup extends Screen {
 	
 	private class SaveBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			switch (type) {
-				case CLASS -> DataManager.classNames = dataList;
-				case SKILL -> DataManager.skills = dataList;
-				case SESSION -> DataManager.sessions = dataList;
-				case PROFICIENCY -> DataManager.proficiencies = dataList;
+			if (type == GeneralDataType.CLASS) {
+				DataManager.classNames.forEach(data -> {
+					if (!DataManager.listContains(dataList, data)) {
+						data.destroy();
+					}
+				});
+				DataManager.classNames = dataList;
+			} else if (type == GeneralDataType.SKILL) {
+				DataManager.skills.forEach(data -> {
+					if (!DataManager.listContains(dataList, data)) {
+						data.destroy();
+					}
+				});
+				DataManager.skills = dataList;
+			} else if (type == GeneralDataType.SESSION) {
+				DataManager.sessions.forEach(data -> {
+					if (!DataManager.listContains(dataList, data)) {
+						data.destroy();
+					}
+				});
+				DataManager.sessions = dataList;
+			} else if (type == GeneralDataType.PROFICIENCY) {
+				DataManager.proficiencies.forEach(data -> {
+					if (!DataManager.listContains(dataList, data)) {
+						data.destroy();
+					}
+				});
+				DataManager.proficiencies = dataList;
+			} else {
+				System.out.println("Invalid GeneralData tried to be removed");
 			}
 			ScreenManager.closePopup();
 		}
