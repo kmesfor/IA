@@ -3,40 +3,37 @@ package com.gmail.kianmesforush.tutormanagement.screens;
 import com.gmail.kianmesforush.tutormanagement.TutorManagement;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
-import com.gmail.kianmesforush.tutormanagement.screens.unauthenticated.UserScreen;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HomeScreen extends Screen {
 	
-	private final JButton continueBtn = new JButton("Continue");
 	private final JButton authBtn = new JButton("Authenticated User Login");
 	private final JButton exitBtn = new JButton("Exit");
 	private final JButton loadSampleDataBtn = new JButton("Load Sample Data");
 	
+	private final JPanel btnsPanel = new JPanel(new BorderLayout());
+	private final JPanel authBtnPanel = new JPanel();
+	
 	public JComponent show(JPanel panel) {
-		
-		continueBtn.addActionListener(new ContinueBtnPressed());
-		panel.add(continueBtn);
+		panel.setLayout(new BorderLayout());
 		
 		authBtn.addActionListener(new AuthBtnPressed());
-		panel.add(authBtn);
+		authBtnPanel.add(authBtn);
 		
 		exitBtn.addActionListener(new ExitBtnPressed());
-		panel.add(exitBtn);
+		btnsPanel.add(exitBtn, BorderLayout.WEST);
 		
 		loadSampleDataBtn.addActionListener(new LoadSampleDataBtnPressed());
-		panel.add(loadSampleDataBtn);
+		btnsPanel.add(loadSampleDataBtn, BorderLayout.EAST);
+		
+		panel.add(authBtnPanel, BorderLayout.CENTER);
+		panel.add(btnsPanel, BorderLayout.SOUTH);
 		
 		return panel;
-	}
-	
-	private static class ContinueBtnPressed implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			ScreenManager.setCurrentScreen(new UserScreen());
-		}
 	}
 	
 	private static class AuthBtnPressed implements ActionListener {

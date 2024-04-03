@@ -35,7 +35,7 @@ public class ViewHoursScreen extends Screen {
 		return panel;
 	}
 	
-	private static class BackBtnPressed implements ActionListener {
+	public static class BackBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) { ScreenManager.setCurrentScreen(new AuthUserPrimaryScreen()); }
 	}
 }
