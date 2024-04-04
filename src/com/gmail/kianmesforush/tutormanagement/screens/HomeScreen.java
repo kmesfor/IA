@@ -1,5 +1,7 @@
 package com.gmail.kianmesforush.tutormanagement.screens;
 
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.TutorManagement;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
@@ -32,6 +34,11 @@ public class HomeScreen extends Screen {
 		
 		panel.add(authBtnPanel, BorderLayout.CENTER);
 		panel.add(btnsPanel, BorderLayout.SOUTH);
+		
+		StylingManager.stylize(authBtn, StyleType.PRIMARY);
+		StylingManager.stylize(exitBtn, StyleType.SECONDARY);
+		StylingManager.stylize(loadSampleDataBtn, StyleType.SECONDARY);
+		StylingManager.stylize(panel, StyleType.PRIMARY);
 		
 		return panel;
 	}
