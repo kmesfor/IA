@@ -20,6 +20,7 @@ public class StylingManager {
 		public static final Color PRIMARY_GREEN = new Color(105, 190, 124);
 		public static final Color GRAY = new Color(79, 87, 80);
 		public static final Color WHITE = new Color(255, 255, 255);
+		public static final Color ERROR = Color.RED;
 		public static final Font FONT_BOLD = new Font("Open Sans", Font.BOLD, 16);
 		public static final Font FONT_NORMAL = new Font("Open Sans", Font.PLAIN, 14);
 		
@@ -90,6 +91,9 @@ public class StylingManager {
 		} else if (type == StyleType.SECONDARY) {
 			label.setFont(StylePreset.FONT_NORMAL);
 			label.setForeground(StylePreset.GRAY);
+		} else if (type == StyleType.ERROR) {
+			label.setFont(StylePreset.FONT_NORMAL);
+			label.setForeground(StylePreset.ERROR);
 		}
 	}
 	
@@ -98,7 +102,7 @@ public class StylingManager {
 			checkbox.setFont(StylePreset.FONT_BOLD);
 			checkbox.setForeground(StylePreset.PRIMARY_GREEN);
 		} else if (type == StyleType.SECONDARY) {
-			checkbox.setFont(StylePreset.FONT_NORMAL);
+			checkbox.setFont(StylePreset.FONT_BOLD);
 			checkbox.setForeground(StylePreset.GRAY);
 		}
 	}

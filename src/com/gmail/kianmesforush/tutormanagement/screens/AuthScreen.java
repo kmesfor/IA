@@ -43,7 +43,6 @@ public class AuthScreen extends Screen {
 	public JComponent show(JPanel panel) {
 		panel.setLayout(new BorderLayout());
 		
-		errorMessage.setForeground(Color.red);
 		errorMessage.setVisible(false);
 		
 		usernamePanel.add(usernameLabel, BorderLayout.NORTH);
@@ -71,6 +70,7 @@ public class AuthScreen extends Screen {
 		StylingManager.stylize(passwordLabel, StyleType.PRIMARY);
 		StylingManager.stylize(loginBtn, StyleType.PRIMARY);
 		StylingManager.stylize(backBtn, StyleType.SECONDARY);
+		StylingManager.stylize(errorMessage, StyleType.ERROR);
 		StylingManager.stylize(panel, StyleType.PRIMARY);
 		
 		loadCredentials();
