@@ -1,12 +1,15 @@
 package com.gmail.kianmesforush.tutormanagement.screens.authenticated;
 
 import com.gmail.kianmesforush.tutormanagement.DataManager;
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.UserType;
 import com.gmail.kianmesforush.tutormanagement.screens.HomeScreen;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,7 +23,8 @@ public class AuthUserPrimaryScreen extends Screen {
 	private final JButton backBtn = new JButton("Back");
 	
 	public JComponent show(JPanel panel) {
-		//TODO: layout
+		panel.setLayout(new GridLayout(0, 1));
+		
 		tutorMgmtBtn.addActionListener(new TutorMgmtBtnPressed());
 		tuteeMgmtBtn.addActionListener(new TuteeMgmtBtnPressed());
 		generalMgmtBtn.addActionListener(new GeneralMgmtButtonPressed());
@@ -34,6 +38,13 @@ public class AuthUserPrimaryScreen extends Screen {
 		panel.add(manageAptsBtn);
 		panel.add(viewHoursBtn);
 		panel.add(backBtn);
+		
+		StylingManager.stylize(tutorMgmtBtn, StyleType.PRIMARY);
+		StylingManager.stylize(tuteeMgmtBtn, StyleType.PRIMARY);
+		StylingManager.stylize(generalMgmtBtn, StyleType.PRIMARY);
+		StylingManager.stylize(manageAptsBtn, StyleType.PRIMARY);
+		StylingManager.stylize(viewHoursBtn, StyleType.PRIMARY);
+		StylingManager.stylize(backBtn, StyleType.SECONDARY);
 		
 		return panel;
 	}
