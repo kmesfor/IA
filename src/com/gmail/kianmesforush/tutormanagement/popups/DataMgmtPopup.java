@@ -2,6 +2,8 @@ package com.gmail.kianmesforush.tutormanagement.popups;
 
 import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralData;
 import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralDataType;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
@@ -47,7 +49,13 @@ public class DataMgmtPopup extends Screen {
 	}
 	
 	public JComponent show(JPanel panel) {
+		panel.setLayout(new BorderLayout());
+		
 		newDataPanel.setLayout(new BorderLayout());
+		
+		dataTypeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		upperPanel.add(dataTypeLabel, BorderLayout.NORTH);
+		
 		newDataPanel.add(textField, BorderLayout.CENTER);
 		addBtn.addActionListener(new AddBtnPressed());
 		newDataPanel.add(addBtn, BorderLayout.EAST);
@@ -55,37 +63,45 @@ public class DataMgmtPopup extends Screen {
 		upperPanel.setLayout(new BorderLayout());
 		upperPanel.add(newDataPanel, BorderLayout.SOUTH);
 		
-		dataTypeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		upperPanel.add(dataTypeLabel, BorderLayout.NORTH);
 		
 		//Ensures there are at least 10 rows (styling)
 		dataPanel.setLayout(new GridLayout(Math.max(dataList.size(), 10), 1));
 		for (GeneralData data : dataList) {
 			JButton componentBtn = new JButton("X");
 			componentBtn.addActionListener(new RemoveBtnPressed(data));
+			StylingManager.stylize(componentBtn, StyleType.SECONDARY);
 			
 			JPanel componentPanel = new JPanel(new BorderLayout());
 			componentPanel.add(componentBtn, BorderLayout.WEST);
-			componentPanel.add(new JLabel(data.getInfo()), BorderLayout.CENTER);
+			
+			JLabel componentLabel = new JLabel(data.getInfo());
+			componentPanel.add(componentLabel, BorderLayout.CENTER);
+			StylingManager.stylize(componentLabel, StyleType.SECONDARY);
 			dataPanel.add(componentPanel);
 		}
 		
 		lowerPanel.setLayout(new BorderLayout());
-		saveBtn.addActionListener(new SaveBtnPressed());
-		lowerPanel.add(saveBtn, BorderLayout.WEST);
 		
 		backBtn.addActionListener(new BackBtnPressed());
-		lowerPanel.add(backBtn, BorderLayout.EAST);
+		lowerPanel.add(backBtn, BorderLayout.WEST);
 		
-		panel.setLayout(new BorderLayout());
+		saveBtn.addActionListener(new SaveBtnPressed());
+		lowerPanel.add(saveBtn, BorderLayout.EAST);
+		
 		panel.add(upperPanel, BorderLayout.NORTH);
 		panel.add(dataPanel, BorderLayout.CENTER);
 		panel.add(lowerPanel, BorderLayout.SOUTH);
 		
+		StylingManager.stylize(dataTypeLabel, StyleType.SECONDARY);
+		StylingManager.stylize(textField, StyleType.PRIMARY);
+		StylingManager.stylize(addBtn, StyleType.PRIMARY);
+		StylingManager.stylize(saveBtn, StyleType.PRIMARY);
+		StylingManager.stylize(backBtn, StyleType.SECONDARY);
+		StylingManager.stylize(panel, StyleType.PRIMARY);
+		
 		return panel;
 	}
 	
-	//DOES NOT WORK
 	private static class BackBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			ScreenManager.closePopup();
