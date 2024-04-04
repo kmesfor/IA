@@ -10,11 +10,11 @@ public class TutorManagement {
 	/**
 	 * Main screen width constant (px)
 	 */
-	public static final int SCREEN_WIDTH = 400;
+	public static final int SCREEN_WIDTH = 700;
 	/**
 	 * Main screen height constant (px)
 	 */
-	public static final int SCREEN_HEIGHT = 200;
+	public static final int SCREEN_HEIGHT = 400;
 	/**
 	 * Main screen x location constant (px)
 	 */
