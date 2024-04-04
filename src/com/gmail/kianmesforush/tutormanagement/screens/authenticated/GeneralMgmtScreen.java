@@ -2,6 +2,8 @@ package com.gmail.kianmesforush.tutormanagement.screens.authenticated;
 
 import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralData;
 import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralDataType;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
@@ -14,11 +16,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class GeneralMgmtScreen extends Screen {
-	private final JButton backBtn = new JButton("Back");
 	private final JButton editClassesBtn = new JButton("Edit Classes");
 	private final JButton editSkillsBtn = new JButton("Edit Skills");
 	private final JButton editProficienciesBtn = new JButton("Edit Proficiencies");
 	private final JButton editSessionsBtn = new JButton("Edit Sessions");
+	private final JButton backBtn = new JButton("Back");
 	
 	private final JPanel btnsPanel = new JPanel();
 	
@@ -28,19 +30,27 @@ public class GeneralMgmtScreen extends Screen {
 		btnsPanel.setLayout(new GridLayout(4, 1));
 		
 		editClassesBtn.addActionListener(new EditClassesPressed());
-		editSkillsBtn.addActionListener(new EditSkillsPressed());
-		editProficienciesBtn.addActionListener(new EditProficienciesPressed());
-		editSessionsBtn.addActionListener(new EditSessionsPressed());
-		
 		btnsPanel.add(editClassesBtn);
+		
+		editSkillsBtn.addActionListener(new EditSkillsPressed());
 		btnsPanel.add(editSkillsBtn);
+		
+		editProficienciesBtn.addActionListener(new EditProficienciesPressed());
 		btnsPanel.add(editProficienciesBtn);
+		
+		editSessionsBtn.addActionListener(new EditSessionsPressed());
 		btnsPanel.add(editSessionsBtn);
 		
 		panel.add(btnsPanel, BorderLayout.CENTER);
 		
 		backBtn.addActionListener(new BackBtnPressed());
 		panel.add(backBtn, BorderLayout.SOUTH);
+		
+		StylingManager.stylize(editClassesBtn, StyleType.PRIMARY);
+		StylingManager.stylize(editSkillsBtn, StyleType.PRIMARY);
+		StylingManager.stylize(editProficienciesBtn, StyleType.PRIMARY);
+		StylingManager.stylize(editSessionsBtn, StyleType.PRIMARY);
+		StylingManager.stylize(backBtn, StyleType.SECONDARY);
 		
 		return panel;
 	}
