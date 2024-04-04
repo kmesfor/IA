@@ -1,10 +1,9 @@
 package com.gmail.kianmesforush.tutormanagement.components;
 
-import com.gmail.kianmesforush.tutormanagement.DataManager;
-import com.gmail.kianmesforush.tutormanagement.ScreenManager;
-import com.gmail.kianmesforush.tutormanagement.TutorManagement;
+import com.gmail.kianmesforush.tutormanagement.*;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Appointment;
 import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralData;
+import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenComponent;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
 import com.gmail.kianmesforush.tutormanagement.screens.authenticated.ManageAptScreen;
 
@@ -14,23 +13,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ManageAptComponent {
-	private final ArrayList<Appointment> apts;
+public class ManageAptComponent extends ScreenComponent {
+	
+	private final JLabel numberLabel = new JLabel();
+	private final JLabel dateLabel = new JLabel();
+	
+	private final JButton cancelBtn = new JButton("Cancel");
+	private final JButton completedBtn = new JButton("Mark as completed");
+	
 	private final Appointment apt;
-	public final JPanel panel = new JPanel();
 	
 	public ManageAptComponent(ArrayList<Appointment> apts, int index) {
-		this.apts = apts;
 		this.apt = apts.get(index);
 		
-		JLabel numberLabel = new JLabel("" + (index + 1));
-		JLabel dateLabel = new JLabel(apt.getSession().getInfo());
-		
-		JButton cancelBtn = new JButton("Cancel");
-		JButton completedBtn = new JButton("Mark as completed");
-		
-		cancelBtn.addActionListener(new CancelBtnPressed());
-		completedBtn.addActionListener(new CompletedBtnPressed());
+		numberLabel.setText("" + (index + 1));
+		dateLabel.setText(apt.getSession().getInfo());
+	}
+	
+	public JComponent show(JPanel panel) {
+		panel.setLayout(new GridLayout(1, 4));
+		panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+		panel.setPreferredSize(new Dimension(TutorManagement.SCREEN_WIDTH - 50, 40));
 		
 		numberLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
 		numberLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -40,14 +43,21 @@ public class ManageAptComponent {
 		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		dateLabel.setVerticalAlignment(SwingConstants.CENTER);
 		
-		panel.setLayout(new GridLayout(1, 4));
+		cancelBtn.addActionListener(new CancelBtnPressed());
+		completedBtn.addActionListener(new CompletedBtnPressed());
+		
 		panel.add(numberLabel);
 		panel.add(dateLabel);
 		panel.add(cancelBtn);
 		panel.add(completedBtn);
 		
-		panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
-		panel.setPreferredSize(new Dimension(TutorManagement.SCREEN_WIDTH - 50, 40));
+		StylingManager.stylize(numberLabel, StyleType.PRIMARY);
+		StylingManager.stylize(dateLabel, StyleType.PRIMARY);
+		StylingManager.stylize(cancelBtn, StyleType.SECONDARY);
+		StylingManager.stylize(completedBtn, StyleType.PRIMARY);
+		StylingManager.stylize(panel, StyleType.PRIMARY);
+		
+		return panel;
 	}
 	
 	private class CancelBtnPressed implements ActionListener {

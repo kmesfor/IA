@@ -112,7 +112,7 @@ public class SearchPopup extends ScreenPopup {
 		resultsPanel.removeAll();
 		resultsPanel.setLayout(new GridLayout(filteredUsers.size(), 1));
 		for (User user : filteredUsers) {
-			resultsPanel.add(new UserSearchComponent(filteredUsers, user).panel);
+			resultsPanel.add(new UserSearchComponent(filteredUsers, user).show(new JPanel()));
 		}
 		pane.setTitleAt(1, "Results (" + filteredUsers.size() + ")");
 		if (filteredUsers.isEmpty()) {

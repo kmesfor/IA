@@ -26,7 +26,7 @@ public class ManageAptScreen extends Screen {
 		
 		aptsPanel.setLayout(new GridLayout(0, 1));
 		for (int i = 0; i < DataManager.appointments.size(); i++) {
-			aptsPanel.add((new ManageAptComponent(DataManager.appointments, i)).panel);
+			aptsPanel.add((new ManageAptComponent(DataManager.appointments, i)).show(new JPanel()));
 		}
 		
 		panel.setLayout(new BorderLayout());
