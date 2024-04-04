@@ -2,6 +2,8 @@ package com.gmail.kianmesforush.tutormanagement.popups;
 
 import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.*;
 import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenPopup;
 import com.gmail.kianmesforush.tutormanagement.screens.authenticated.UserMgmtScreen;
@@ -17,14 +19,15 @@ import java.util.HashMap;
 public class EditUserPopup extends ScreenPopup {
 	private final JLabel nameLabel = new JLabel("Name:");
 	private final JLabel availabilityLabel = new JLabel("Availability:");
-	private JLabel classesLabel;
-	private JLabel skillsLabel;
-	private JLabel proficienciesLabel;
+	private final JLabel classesLabel = new JLabel();
+	private final JLabel skillsLabel = new JLabel();
+	private final JLabel proficienciesLabel = new JLabel();
+	private final JLabel typeLabel = new JLabel();
 	
 	private final JTextField nameField = new JTextField("New User");
 	
-	private final JButton saveBtn = new JButton("Save");
 	private final JButton cancelBtn = new JButton("Cancel");
+	private final JButton saveBtn = new JButton("Save");
 	
 	private final JPanel namePanel = new JPanel();
 	private final JPanel upperPanel = new JPanel();
@@ -50,34 +53,44 @@ public class EditUserPopup extends ScreenPopup {
 	}
 	
 	public JComponent show(JPanel panel) {
+		panel.setLayout(new BorderLayout());
+		//https://stackoverflow.com/questions/5328405/jpanel-padding-in-java
+		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
 		namePanel.setLayout(new BorderLayout());
 		namePanel.add(nameLabel, BorderLayout.WEST);
 		namePanel.add(nameField, BorderLayout.CENTER);
 		
 		upperPanel.setLayout(new BorderLayout());
 		upperPanel.add(namePanel, BorderLayout.NORTH);
-		upperPanel.add(new JLabel("User type: " + userType));
+		upperPanel.add(typeLabel);
+		
+		contentPanel.setLayout(new GridLayout(0, 1));
 		
 		cancelBtn.addActionListener(new CancelBtnPressed());
 		saveBtn.addActionListener(new SaveBtnPressed());
-		btnsPanel.add(saveBtn);
 		btnsPanel.add(cancelBtn);
+		btnsPanel.add(saveBtn);
 		
-		//make rows the # of labels + the # of options
-		int rows = (4 + DataManager.sessions.size() + DataManager.classNames.size() + DataManager.skills.size() + DataManager.proficiencies.size());
-		
-		contentPanel.setLayout(new GridLayout(rows, 1));
-		populateCheckboxes();
-		
-		panel.setLayout(new BorderLayout());
 		panel.add(upperPanel, BorderLayout.NORTH);
-		panel.add(btnsPanel, BorderLayout.SOUTH);
 		panel.add(new JScrollPane(contentPanel), BorderLayout.CENTER);
+		panel.add(btnsPanel, BorderLayout.SOUTH);
 		
-		//https://stackoverflow.com/questions/5328405/jpanel-padding-in-java
-		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		StylingManager.stylize(nameLabel, StyleType.PRIMARY);
+		StylingManager.stylize(nameField, StyleType.SECONDARY);
+		StylingManager.stylize(typeLabel, StyleType.SECONDARY);
+		
+		StylingManager.stylize(availabilityLabel, StyleType.PRIMARY);
+		StylingManager.stylize(classesLabel, StyleType.PRIMARY);
+		StylingManager.stylize(skillsLabel, StyleType.PRIMARY);
+		StylingManager.stylize(proficienciesLabel, StyleType.PRIMARY);
+		StylingManager.stylize(saveBtn, StyleType.PRIMARY);
+		StylingManager.stylize(cancelBtn, StyleType.SECONDARY);
+		
+		StylingManager.stylize(panel, StyleType.PRIMARY);
 		
 		if (existingData != null) fillData(existingData);
+		populateCheckboxes();
 		
 		return panel;
 	}
@@ -111,33 +124,38 @@ public class EditUserPopup extends ScreenPopup {
 		for (GeneralData session : DataManager.sessions) {
 			availabilityCheckboxes.put(session, new JCheckBox(session.getInfo()));
 			contentPanel.add(availabilityCheckboxes.get(session));
+			StylingManager.stylize(availabilityCheckboxes.get(session), StyleType.SECONDARY);
 		}
 		contentPanel.add(classesLabel);
 		for (GeneralData className : DataManager.classNames) {
 			classCheckboxes.put(className, new JCheckBox(className.getInfo()));
 			contentPanel.add(classCheckboxes.get(className));
+			StylingManager.stylize(classCheckboxes.get(className), StyleType.SECONDARY);
 		}
 		contentPanel.add(skillsLabel);
 		for (GeneralData skill : DataManager.skills) {
 			skillCheckboxes.put(skill, new JCheckBox(skill.getInfo()));
 			contentPanel.add(skillCheckboxes.get(skill));
+			StylingManager.stylize(skillCheckboxes.get(skill), StyleType.SECONDARY);
 		}
 		contentPanel.add(proficienciesLabel);
 		for (GeneralData proficiency : DataManager.proficiencies) {
 			proficiencyCheckboxes.put(proficiency, new JCheckBox(proficiency.getInfo()));
 			contentPanel.add(proficiencyCheckboxes.get(proficiency));
+			StylingManager.stylize(proficiencyCheckboxes.get(proficiency), StyleType.SECONDARY);
 		}
 	}
 	
 	private void initializeLabels() {
+		typeLabel.setText("User type: " + userType);
 		if (userType == UserType.TUTOR) {
-			classesLabel = new JLabel("Prior classes:");
-			skillsLabel = new JLabel("Skills:");
-			proficienciesLabel = new JLabel("Proficiencies:");
+			classesLabel.setText("Prior classes:");
+			skillsLabel.setText("Skills:");
+			proficienciesLabel.setText("Proficiencies:");
 		} else {
-			classesLabel = new JLabel("Needs help in classes:");
-			skillsLabel = new JLabel("Needs help with skills:");
-			proficienciesLabel = new JLabel("Need help with proficiencies:");
+			classesLabel.setText("Needs help in classes:");
+			skillsLabel.setText("Needs help with skills:");
+			proficienciesLabel.setText("Need help with proficiencies:");
 		}
 	}
 	
