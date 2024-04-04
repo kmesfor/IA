@@ -1,7 +1,10 @@
 package com.gmail.kianmesforush.tutormanagement.components;
 
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.TutorManagement;
+import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenComponent;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
 import com.gmail.kianmesforush.tutormanagement.datatypes.UserType;
 import com.gmail.kianmesforush.tutormanagement.popups.EditUserPopup;
@@ -14,45 +17,56 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class UserMgmtComponent {
+public class UserMgmtComponent extends ScreenComponent {
+	private final JLabel numberLabel = new JLabel();
+	private final JLabel nameLabel = new JLabel();
+	
+	private final JButton notesBtn = new JButton("Notes");
+	private final JButton editBtn = new JButton("Edit");
+	private final JButton removeBtn = new JButton("Remove");
+	
 	private final User user;
 	private final ArrayList<User> users;
-	public final JPanel panel = new JPanel();
 	
 	public UserMgmtComponent(ArrayList<User> users, int index) {
-		//TODO: change this to handle tutees as well
 		this.users = users;
 		this.user = users.get(index);
+		numberLabel.setText("" + (index + 1));
+		nameLabel.setText(user.getName());
+	}
+	
+	public JComponent show(JPanel panel) {
+		panel.setLayout(new GridLayout(1, 5));
 		
-		JLabel numberLabel = new JLabel("" + (index + 1));
-		JLabel nameLabel = new JLabel(user.getName());
-		JButton notesBtn = new JButton("Notes");
-		JButton editBtn = new JButton("Edit");
-		JButton removeBtn = new JButton("Remove");
-		
-		numberLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
+		numberLabel.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 1, StylingManager.StylePreset.GRAY));
 		numberLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		numberLabel.setVerticalAlignment(SwingConstants.CENTER);
+		panel.add(numberLabel);
 		
-		nameLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
+		nameLabel.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 1, StylingManager.StylePreset.GRAY));
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setVerticalAlignment(SwingConstants.CENTER);
+		panel.add(nameLabel);
+		
+		notesBtn.addActionListener(new NotesBtnPressed());
+		panel.add(notesBtn);
+		
+		editBtn.addActionListener(new EditBtnPressed());
+		panel.add(editBtn);
 		
 		removeBtn.addActionListener(new RemoveBtnPressed());
-		editBtn.addActionListener(new EditBtnPressed());
-		notesBtn.addActionListener(new NotesBtnPressed());
-		
-		panel.setLayout(new GridLayout(1, 5));
-		panel.add(numberLabel);
-		panel.add(nameLabel);
-		panel.add(notesBtn);
-		panel.add(editBtn);
 		panel.add(removeBtn);
 		
-		//https://stackoverflow.com/questions/2174319/is-it-possible-to-have-a-java-swing-border-only-on-the-top-side
-		panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+		StylingManager.stylize(numberLabel, StyleType.SECONDARY);
+		StylingManager.stylize(nameLabel, StyleType.PRIMARY);
+		StylingManager.stylize(notesBtn, StyleType.PRIMARY);
+		StylingManager.stylize(editBtn, StyleType.PRIMARY);
+		StylingManager.stylize(removeBtn, StyleType.SECONDARY);
+		StylingManager.stylize(panel, StyleType.PRIMARY);
+		
 		//https://stackoverflow.com/questions/22920046/how-to-set-fix-size-of-jlabel
 		panel.setPreferredSize(new Dimension(TutorManagement.SCREEN_WIDTH - 50, 40));
+		return panel;
 	}
 	
 	private class RemoveBtnPressed implements ActionListener {

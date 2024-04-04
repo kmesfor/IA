@@ -2,6 +2,8 @@ package com.gmail.kianmesforush.tutormanagement.screens.authenticated;
 
 import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.components.UserMgmtComponent;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
@@ -14,12 +16,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-//TODO: restructure this class to work universally for tutors or tutees
-//TODO: once Tutor and Tutee classes are deprecated in favor of User
-
 public class UserMgmtScreen extends Screen {
 	//Holds add btn and other save/back/filter btns (maybe move add button below with rest)
-	private final JPanel controlPanel = new JPanel();
+	private final JPanel btnsPanel = new JPanel();
 
 	private final JButton backBtn = new JButton("Back");
 	private final JButton saveBtn = new JButton("Save");
@@ -47,28 +46,35 @@ public class UserMgmtScreen extends Screen {
 	}
 
 	public JComponent show(JPanel panel) {
+		panel.setLayout(new BorderLayout());
+		
 		//This must be initialized in #show() to ensure duplicate UserMgmtComponents
 		//are not made if #show() is called numerous times
 		//Container for list of UserMgmtComponents
-		JPanel listPanel = new JPanel();
+		JPanel listPanel = new JPanel(new GridLayout(users.size(), 1));
+		
+		for (int i = 0; i < users.size(); i++) {
+			listPanel.add(new UserMgmtComponent(users, i).show(new JPanel()));
+		}
+		
+		backBtn.addActionListener(new BackBtnPressed());
+		btnsPanel.add(backBtn);
+		
+		addBtn.addActionListener(new AddBtnPressed());
+		btnsPanel.add(addBtn);
 
-		panel.setLayout(new BorderLayout());
-
+		saveBtn.addActionListener(new SaveBtnPressed());
+		btnsPanel.add(saveBtn);
+		
+		
 		// https://stackoverflow.com/questions/30292519/scrollpane-adding-to-grid-layout
 		panel.add(new JScrollPane(listPanel), BorderLayout.CENTER);
-		panel.add(controlPanel, BorderLayout.SOUTH);
-
-		listPanel.setLayout(new GridLayout(users.size(), 1));
-		for (int i = 0; i < users.size(); i++) {
-			listPanel.add(new UserMgmtComponent(users, i).panel);
-		}
-
-		backBtn.addActionListener(new BackBtnPressed());
-		saveBtn.addActionListener(new SaveBtnPressed());
-		addBtn.addActionListener(new AddBtnPressed());
-		controlPanel.add(backBtn);
-		controlPanel.add(saveBtn);
-		controlPanel.add(addBtn);
+		panel.add(btnsPanel, BorderLayout.SOUTH);
+		
+		StylingManager.stylize(backBtn, StyleType.SECONDARY);
+		StylingManager.stylize(addBtn, StyleType.PRIMARY);
+		StylingManager.stylize(saveBtn, StyleType.PRIMARY);
+		StylingManager.stylize(btnsPanel, StyleType.PRIMARY);
 
 		return panel;
 	}
