@@ -1,5 +1,7 @@
 package com.gmail.kianmesforush.tutormanagement.screens;
 
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
 import com.gmail.kianmesforush.tutormanagement.screens.authenticated.AuthUserPrimaryScreen;
@@ -21,40 +23,55 @@ public class AuthScreen extends Screen {
 	
 	private final JLabel usernameLabel = new JLabel("Username");
 	private final JTextField usernameInput = new JTextField(10);
+	
 	private final JLabel passwordLabel = new JLabel("Password");
 	private final JPasswordField passwordInput = new JPasswordField(10);
+	
 	private final JButton loginBtn = new JButton("Login");
 	private final JButton backBtn = new JButton("Back");
+	
 	private final JLabel errorMessage = new JLabel("", SwingConstants.CENTER);
-	private final JPanel fieldsPanel = new JPanel();
-	private final JPanel btnsPanel = new JPanel();
+	
+	private final JPanel fieldsPanel = new JPanel(new BorderLayout());
+	private final JPanel btnsPanel = new JPanel(new BorderLayout());
+	private final JPanel usernamePanel = new JPanel(new BorderLayout());
+	private final JPanel passwordPanel = new JPanel(new BorderLayout());
 	
 	private String usernameCredential;
 	private String passwordCredential;
 	
 	public JComponent show(JPanel panel) {
-		//TODO: Layout and functionality
-		//Initializing panel content
 		panel.setLayout(new BorderLayout());
 		
 		errorMessage.setForeground(Color.red);
 		errorMessage.setVisible(false);
 		
-		panel.add(errorMessage, BorderLayout.NORTH);
-		panel.add(fieldsPanel, BorderLayout.CENTER);
-		panel.add(btnsPanel, BorderLayout.SOUTH);
+		usernamePanel.add(usernameLabel, BorderLayout.NORTH);
+		usernamePanel.add(usernameInput, BorderLayout.SOUTH);
 		
-		fieldsPanel.add(usernameLabel);
-		fieldsPanel.add(usernameInput);
-		fieldsPanel.add(passwordLabel);
-		fieldsPanel.add(passwordInput);
+		passwordPanel.add(passwordLabel, BorderLayout.NORTH);
+		passwordPanel.add(passwordInput, BorderLayout.SOUTH);
 		
-		btnsPanel.setLayout(new BorderLayout());
+		fieldsPanel.add(usernamePanel, BorderLayout.NORTH);
+		fieldsPanel.add(passwordPanel, BorderLayout.SOUTH);
+		
 		loginBtn.addActionListener(new LoginBtnPressed());
 		btnsPanel.add(loginBtn, BorderLayout.WEST);
 		
 		backBtn.addActionListener(new BackBtnPressed());
 		btnsPanel.add(backBtn, BorderLayout.EAST);
+		
+		panel.add(errorMessage, BorderLayout.NORTH);
+		panel.add(fieldsPanel, BorderLayout.CENTER);
+		panel.add(btnsPanel, BorderLayout.SOUTH);
+		
+		StylingManager.stylize(usernameInput, StyleType.SECONDARY);
+		StylingManager.stylize(passwordInput, StyleType.SECONDARY);
+		StylingManager.stylize(usernameLabel, StyleType.PRIMARY);
+		StylingManager.stylize(passwordLabel, StyleType.PRIMARY);
+		StylingManager.stylize(loginBtn, StyleType.PRIMARY);
+		StylingManager.stylize(backBtn, StyleType.SECONDARY);
+		StylingManager.stylize(panel, StyleType.PRIMARY);
 		
 		loadCredentials();
 		
