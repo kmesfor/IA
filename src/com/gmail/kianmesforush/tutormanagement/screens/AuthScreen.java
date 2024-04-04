@@ -55,11 +55,11 @@ public class AuthScreen extends Screen {
 		fieldsPanel.add(usernamePanel, BorderLayout.NORTH);
 		fieldsPanel.add(passwordPanel, BorderLayout.SOUTH);
 		
-		loginBtn.addActionListener(new LoginBtnPressed());
-		btnsPanel.add(loginBtn, BorderLayout.WEST);
-		
 		backBtn.addActionListener(new BackBtnPressed());
-		btnsPanel.add(backBtn, BorderLayout.EAST);
+		btnsPanel.add(backBtn, BorderLayout.WEST);
+		
+		loginBtn.addActionListener(new LoginBtnPressed());
+		btnsPanel.add(loginBtn, BorderLayout.EAST);
 		
 		panel.add(errorMessage, BorderLayout.NORTH);
 		panel.add(fieldsPanel, BorderLayout.CENTER);
