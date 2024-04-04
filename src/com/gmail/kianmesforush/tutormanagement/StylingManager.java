@@ -93,6 +93,16 @@ public class StylingManager {
 		}
 	}
 	
+	public static void stylize(JCheckBox checkbox, StyleType type) {
+		if (type == StyleType.PRIMARY) {
+			checkbox.setFont(StylePreset.FONT_BOLD);
+			checkbox.setForeground(StylePreset.PRIMARY_GREEN);
+		} else if (type == StyleType.SECONDARY) {
+			checkbox.setFont(StylePreset.FONT_NORMAL);
+			checkbox.setForeground(StylePreset.GRAY);
+		}
+	}
+	
 	private static void makeChildrenTranslucent(JPanel panel) {
 		for (Component component : panel.getComponents()) {
 			if (component instanceof JPanel) {
