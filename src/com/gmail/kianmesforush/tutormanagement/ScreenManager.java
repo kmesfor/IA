@@ -59,9 +59,8 @@ public class ScreenManager {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent event) {
-				if (JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit? Data may not be saved.") == JOptionPane.OK_OPTION) {
-					exit();
-				}
+				//Saves data before exit
+				exit();
 			}
 		});
 		
