@@ -2,6 +2,8 @@ package com.gmail.kianmesforush.tutormanagement.screens.authenticated;
 
 import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Appointment;
 import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralData;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
@@ -12,6 +14,7 @@ import com.gmail.kianmesforush.tutormanagement.popups.SelectSessionPopup;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.synth.SynthLabelUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,57 +56,68 @@ public class CreateAptScreen extends Screen {
 		JSpinner sessionInput = new JSpinner();
 		JButton createBtn = new JButton("Create Appointment");
 		
-		JPanel btnPanel = new JPanel();
-		JPanel mainPanel = new JPanel();
-		JPanel tutorPanel = new JPanel(new BorderLayout());
-		JPanel tuteePanel = new JPanel(new BorderLayout());
-		JPanel sessionPanel = new JPanel(new BorderLayout());
-		JPanel sessionDurationPanel = new JPanel(new BorderLayout());
+		JPanel btnPanel = new JPanel(new BorderLayout());
+		JPanel mainPanel = new JPanel(new GridLayout(0, 2));
 		
 		panel.setLayout(new BorderLayout());
 		panel.add(mainPanel, BorderLayout.CENTER);
 		panel.add(btnPanel, BorderLayout.SOUTH);
 		
-		mainPanel.add(tutorPanel);
-		mainPanel.add(tuteePanel);
-		mainPanel.add(sessionPanel);
-		mainPanel.add(sessionDurationPanel);
-		
-		tutorPanel.add(tutorTextLabel, BorderLayout.WEST);
+		mainPanel.add(tutorTextLabel);
 		if (tutorSelected != null) {
-			tutorPanel.add(new JLabel(tutorSelected.getName()), BorderLayout.CENTER);
+			JLabel label = new JLabel(tutorSelected.getName());
+			StylingManager.stylize(label, StyleType.PRIMARY);
+			mainPanel.add(label);
 		} else {
-			tutorPanel.add(selectTutorBtn, BorderLayout.CENTER);
+			mainPanel.add(selectTutorBtn);
 			selectTutorBtn.addActionListener(new SelectTutorBtnPressed());
 		}
 		
-		tuteePanel.add(tuteeTextLabel, BorderLayout.WEST);
+		mainPanel.add(tuteeTextLabel);
 		if (tuteeSelected != null) {
-			tuteePanel.add(new JLabel(tuteeSelected.getName()), BorderLayout.CENTER);
+			JLabel label = new JLabel(tuteeSelected.getName());
+			StylingManager.stylize(label, StyleType.PRIMARY);
+			mainPanel.add(label);
 		} else {
-			tuteePanel.add(selectTuteeBtn, BorderLayout.CENTER);
+			mainPanel.add(selectTuteeBtn);
 			selectTuteeBtn.addActionListener(new SelectTuteeBtnPressed());
 		}
 		
-		sessionPanel.add(sessionTextLabel, BorderLayout.WEST);
+		mainPanel.add(sessionTextLabel);
 		if (sessionSelected != null) {
-			sessionPanel.add(new JLabel(sessionSelected.getInfo()), BorderLayout.CENTER);
+			JLabel label = new JLabel(sessionSelected.getInfo());
+			StylingManager.stylize(label, StyleType.PRIMARY);
+			mainPanel.add(label);
 		} else {
-			sessionPanel.add(selectSessionBtn, BorderLayout.CENTER);
+			mainPanel.add(selectSessionBtn);
 			selectSessionBtn.addActionListener(new SelectSessionBtnPressed());
 		}
 		
-		sessionDurationPanel.add(sessionDurationLabel, BorderLayout.WEST);
+		mainPanel.add(sessionDurationLabel);
 		sessionInput.setModel(new SpinnerNumberModel(duration, 0, Integer.MAX_VALUE, 1));
 		sessionInput.addChangeListener(new SessionInputChanged(sessionInput, this));
-		sessionDurationPanel.add(sessionInput, BorderLayout.CENTER);
+		mainPanel.add(sessionInput);
 		
 		
-		btnPanel.add(createBtn);
+		btnPanel.add(createBtn, BorderLayout.EAST);
 		createBtn.addActionListener(new CreateAptBtnPressed());
 		createBtn.setEnabled(tutorSelected != null && tuteeSelected != null && sessionSelected != null);
-		btnPanel.add(backBtn);
+		btnPanel.add(backBtn, BorderLayout.WEST);
 		backBtn.addActionListener(new BackBtnPressed());
+		
+		StylingManager.stylize(tutorTextLabel, StyleType.PRIMARY);
+		StylingManager.stylize(selectTutorBtn, StyleType.PRIMARY);
+		StylingManager.stylize(tuteeTextLabel, StyleType.PRIMARY);
+		StylingManager.stylize(selectTuteeBtn, StyleType.PRIMARY);
+		StylingManager.stylize(sessionTextLabel, StyleType.PRIMARY);
+		StylingManager.stylize(selectSessionBtn, StyleType.PRIMARY);
+		StylingManager.stylize(sessionDurationLabel, StyleType.PRIMARY);
+		StylingManager.stylize(sessionInput, StyleType.PRIMARY);
+		StylingManager.stylize(btnPanel, StyleType.PRIMARY);
+		
+		StylingManager.stylize(createBtn, StyleType.PRIMARY);
+		StylingManager.stylize(backBtn, StyleType.SECONDARY);
+		StylingManager.stylize(panel, StyleType.PRIMARY);
 		
 		return panel;
 	}

@@ -1,6 +1,8 @@
 package com.gmail.kianmesforush.tutormanagement.popups;
 
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
+import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenPopup;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
@@ -28,6 +30,8 @@ public class NotesPopup extends ScreenPopup {
 	}
 	
 	public JComponent show(JPanel panel) {
+		panel.setLayout(new BorderLayout());
+		
 		addNoteBtn.addActionListener(new AddNoteBtnPressed());
 		newNotePanel.setLayout(new BorderLayout());
 		newNotePanel.add(noteField, BorderLayout.CENTER);
@@ -40,17 +44,26 @@ public class NotesPopup extends ScreenPopup {
 			componentBtn.addActionListener(new RemoveNoteBtnPressed(note));
 			
 			JPanel componentPanel = new JPanel(new BorderLayout());
+			JLabel noteLabel = new JLabel(note);
 			componentPanel.add(componentBtn, BorderLayout.WEST);
-			componentPanel.add(new JLabel(note), BorderLayout.CENTER);
+			componentPanel.add(noteLabel, BorderLayout.CENTER);
 			contentPanel.add(componentPanel);
+			
+			StylingManager.stylize(componentBtn, StyleType.SECONDARY);
+			StylingManager.stylize(noteLabel, StyleType.SECONDARY);
 		}
 		
-		panel.setLayout(new BorderLayout());
 		panel.add(newNotePanel, BorderLayout.NORTH);
 		panel.add(new JScrollPane(contentPanel), BorderLayout.CENTER);
 		
 		backBtn.addActionListener(new BackBtnPressed());
 		panel.add(backBtn, BorderLayout.SOUTH);
+		
+		StylingManager.stylize(addNoteBtn, StyleType.PRIMARY);
+		StylingManager.stylize(noteField, StyleType.PRIMARY);
+		StylingManager.stylize(backBtn, StyleType.SECONDARY);
+		StylingManager.stylize(contentPanel, StyleType.PRIMARY);
+		StylingManager.stylize(panel, StyleType.PRIMARY);
 		
 		return panel;
 	}

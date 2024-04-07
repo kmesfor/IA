@@ -38,19 +38,22 @@ public class StylingManager {
 		}
 		Color bg = button.getBackground();
 		Color fg = button.getForeground();
-		button.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				button.setBackground(StylePreset.WHITE);
-				button.setForeground(StylePreset.PRIMARY_GREEN);
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				button.setBackground(bg);
-				button.setForeground(fg);
-			}
-		});
+		if (button.isEnabled()) {
+			button.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					button.setBackground(StylePreset.WHITE);
+					button.setForeground(StylePreset.PRIMARY_GREEN);
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					button.setBackground(bg);
+					button.setForeground(fg);
+				}
+			});
+		}
+		
 		button.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createLineBorder(StylePreset.GRAY, 1, true),
 				BorderFactory.createEmptyBorder(5,5,5,5)
@@ -104,6 +107,28 @@ public class StylingManager {
 		} else if (type == StyleType.SECONDARY) {
 			checkbox.setFont(StylePreset.FONT_BOLD);
 			checkbox.setForeground(StylePreset.GRAY);
+		}
+	}
+	
+	public static void stylize(JSpinner spinner, StyleType type) {
+		spinner.setFont(StylePreset.FONT_BOLD);
+		if (type == StyleType.PRIMARY) {
+			spinner.setBackground(StylePreset.LIGHT_GREEN);
+			spinner.setForeground(StylePreset.PRIMARY_GREEN);
+		} else if (type == StyleType.SECONDARY) {
+			spinner.setBackground(StylePreset.WHITE);
+			spinner.setForeground(StylePreset.GRAY);
+		}
+	}
+	
+	public static void stylize(JTabbedPane pane, StyleType type) {
+		pane.setFont(StylePreset.FONT_BOLD);
+		if (type == StyleType.PRIMARY) {
+			pane.setBackground(StylePreset.LIGHT_GREEN);
+			pane.setForeground(StylePreset.PRIMARY_GREEN);
+		} else if (type == StyleType.SECONDARY) {
+			pane.setBackground(StylePreset.WHITE);
+			pane.setForeground(StylePreset.GRAY);
 		}
 	}
 	

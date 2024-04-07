@@ -1,8 +1,6 @@
 package com.gmail.kianmesforush.tutormanagement.popups;
 
-import com.gmail.kianmesforush.tutormanagement.DataManager;
-import com.gmail.kianmesforush.tutormanagement.ScreenManager;
-import com.gmail.kianmesforush.tutormanagement.TutorManagement;
+import com.gmail.kianmesforush.tutormanagement.*;
 import com.gmail.kianmesforush.tutormanagement.components.UserSearchComponent;
 import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralData;
 import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenPopup;
@@ -22,7 +20,6 @@ public class SearchPopup extends ScreenPopup {
 	private final JPanel resultsPanel = new JPanel();
 	private final JPanel btnPanel = new JPanel();
 	private final JTabbedPane pane = new JTabbedPane();
-	
 	
 	private final JLabel availabilityLabel = new JLabel("Availability:");
 	private final JLabel classesLabel = new JLabel("Classes:");
@@ -62,6 +59,13 @@ public class SearchPopup extends ScreenPopup {
 		panel.add(pane, BorderLayout.CENTER);
 		panel.add(btnPanel, BorderLayout.SOUTH);
 		
+		StylingManager.stylize(backBtn, StyleType.SECONDARY);
+		StylingManager.stylize(availabilityLabel, StyleType.PRIMARY);
+		StylingManager.stylize(classesLabel, StyleType.PRIMARY);
+		StylingManager.stylize(skillsLabel, StyleType.PRIMARY);
+		StylingManager.stylize(proficienciesLabel, StyleType.PRIMARY);
+		StylingManager.stylize(panel, StyleType.PRIMARY);
+		
 		loadUsers();
 		
 		return panel;
@@ -73,6 +77,7 @@ public class SearchPopup extends ScreenPopup {
 		checkBox.addActionListener(new FilterUpdated(data, checkBox));
 		checkBox.setEnabled(true);
 		panel.add(checkBox);
+		StylingManager.stylize(checkBox, StyleType.SECONDARY);
 		return panel;
 	}
 	
