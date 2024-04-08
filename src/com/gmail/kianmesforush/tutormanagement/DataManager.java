@@ -44,27 +44,29 @@ public class DataManager {
 		serialize(appointments, "data/appointments");
 	}
 	
-	/* The usage of UUIDs and comparing UUIDs for GeneralData is necessary to ensure that data is persistent.
-	Without UUIDs, when serializing and deserializing data, a new GeneralData instance is created for each
-	GeneralData (correct behavior) and for each GeneralData stored within a User (incorrect behavior). This
-	leads to unnecessary duplicate GeneralData being created and the program unable to match up GeneralData from
-	DataManager.(GeneralDataType) and individual data from Users.
-	
-	Example without UUIDs:
-	The following classes would be created, but would not be connected:
-	DataManager.classes -> new ClassName("English")
-	DataManager.tutors[0] -> new ClassName("English")
-	
-	The two english classes, although they should be connected (not through name though), are not.
-	
-	Example with UUIDs:
-	The following classes would be created, and could be linked by UUID:
-	DataManager.classes -> new ClassName("English") UUID: 12345
-	DataManager.tutors[0] -> new ClassName("English) UUID: 12345
-	
-	Although new classes are still created (due to the method of serialization), these classes are linkable by UUIDs
-	and can be considered equivalent.
- */
+	/**
+	 * Check if a list of GeneralData elements contains the same UUID as a provided GeneralData element.
+	 * <br><br>The usage of UUIDs and comparing UUIDs for GeneralData is necessary to ensure that data is persistent.
+	 * 	Without UUIDs, when serializing and deserializing data, a new GeneralData instance is created for each
+	 * 	GeneralData (correct behavior) and for each GeneralData stored within a User (incorrect behavior). This
+	 * 	leads to unnecessary duplicate GeneralData being created and the program unable to match up GeneralData from
+	 * 	DataManager.(GeneralDataType) and individual data from Users.
+	 * 	<br><br>Example without UUIDs:
+	 * 	The following classes would be created, but would not be connected:
+	 * 	DataManager.classes -> new ClassName("English")
+	 * 	DataManager.tutors[0] -> new ClassName("English")
+	 * 	<br><br>The two english classes, although they should be connected (not through name though), are not.
+	 * 	<br><br>Example with UUIDs:
+	 * 	The following classes would be created, and could be linked by UUID:
+	 * 	DataManager.classes -> new ClassName("English") UUID: 12345
+	 * 	DataManager.tutors[0] -> new ClassName("English) UUID: 12345
+	 * <br><br>Although new classes are still created (due to the method of serialization), these classes are linkable by UUIDs
+	 * 	and can be considered equivalent.
+	 *
+	 * @param list the list of elements to check for a matching UUID
+	 * @param data the provided element
+	 * @return true if any element in the list has the same UUID as the provided element
+	 */
 	public static Boolean listContains(ArrayList<GeneralData> list, GeneralData data) {
 		for (GeneralData listElement : list) {
 			if (listElement.getUUID().equals(data.getUUID())) return true;
@@ -72,6 +74,13 @@ public class DataManager {
 		return false;
 	}
 	
+	/**
+	 * Same usage as {@link DataManager#listContains(ArrayList, GeneralData)}, instead for User UUIDs
+	 *
+	 * @param list the list of elements to check for a matching UUID
+	 * @param user the provided user element
+	 * @return true if any element in the list has the same UUID as the provided element
+	 */
 	public static Boolean listContains(ArrayList<User> list, User user) {
 		for (User listElement : list) {
 			if (listElement.getUUID().equals(user.getUUID())) return true;
@@ -107,7 +116,7 @@ public class DataManager {
 	/**
 	 * Deserialize an object by reading serialized data from an external file.
 	 * @param path the file path of the file to deserialize
-	 * @return An object that should be cast to the type that was initially serialized
+	 * @return an object that was initially serialized, must cast the type before usage
 	 */
 	// https://www.baeldung.com/java-how-to-create-a-file
 	private static Object deserialize(String path) {
