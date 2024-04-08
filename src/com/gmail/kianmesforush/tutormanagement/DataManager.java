@@ -7,6 +7,11 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class DataManager {
+	/*
+	Data that is accessible from DataManager. Other components of the program should edit data directly
+	through DataManager.[field] (ex: DataManager.sessions.add(new Session())) to edit data. TutorManagement
+	will handle calling the #initialize() and #save() functions
+	 */
 	public static ArrayList<GeneralData> sessions = new ArrayList<>();
 	public static ArrayList<GeneralData> classNames = new ArrayList<>();
 	public static ArrayList<GeneralData> proficiencies = new ArrayList<>();
