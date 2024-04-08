@@ -2,7 +2,7 @@ package com.gmail.kianmesforush.tutormanagement.screens.authenticated;
 
 import com.gmail.kianmesforush.tutormanagement.DataManager;
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
-import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.datatypes.StyleType;
 import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.datatypes.Appointment;
 import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralData;
@@ -14,7 +14,6 @@ import com.gmail.kianmesforush.tutormanagement.popups.SelectSessionPopup;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.plaf.synth.SynthLabelUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

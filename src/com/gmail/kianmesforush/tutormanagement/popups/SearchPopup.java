@@ -4,8 +4,8 @@ import com.gmail.kianmesforush.tutormanagement.*;
 import com.gmail.kianmesforush.tutormanagement.components.UserSearchComponent;
 import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralData;
 import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenPopup;
+import com.gmail.kianmesforush.tutormanagement.datatypes.StyleType;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
-import com.gmail.kianmesforush.tutormanagement.screens.authenticated.ViewHoursScreen;
 
 import javax.swing.*;
 import java.awt.*;

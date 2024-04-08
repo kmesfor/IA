@@ -1,9 +1,8 @@
 package com.gmail.kianmesforush.tutormanagement.popups;
 
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
-import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.datatypes.StyleType;
 import com.gmail.kianmesforush.tutormanagement.StylingManager;
-import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenPopup;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
 import com.gmail.kianmesforush.tutormanagement.screens.authenticated.UserMgmtScreen;
@@ -13,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class NotesPopup extends ScreenPopup {
 	private final JButton addNoteBtn = new JButton("Add Note");

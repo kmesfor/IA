@@ -1,10 +1,7 @@
 package com.gmail.kianmesforush.tutormanagement.components;
 
 import com.gmail.kianmesforush.tutormanagement.*;
-import com.gmail.kianmesforush.tutormanagement.datatypes.Appointment;
-import com.gmail.kianmesforush.tutormanagement.datatypes.GeneralData;
-import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenComponent;
-import com.gmail.kianmesforush.tutormanagement.datatypes.User;
+import com.gmail.kianmesforush.tutormanagement.datatypes.*;
 import com.gmail.kianmesforush.tutormanagement.screens.authenticated.ManageAptScreen;
 
 import javax.swing.*;

@@ -1,10 +1,9 @@
 package com.gmail.kianmesforush.tutormanagement.components;
 
 import com.gmail.kianmesforush.tutormanagement.ScreenManager;
-import com.gmail.kianmesforush.tutormanagement.StyleType;
+import com.gmail.kianmesforush.tutormanagement.datatypes.StyleType;
 import com.gmail.kianmesforush.tutormanagement.StylingManager;
 import com.gmail.kianmesforush.tutormanagement.TutorManagement;
-import com.gmail.kianmesforush.tutormanagement.datatypes.Screen;
 import com.gmail.kianmesforush.tutormanagement.datatypes.ScreenComponent;
 import com.gmail.kianmesforush.tutormanagement.datatypes.User;
 import com.gmail.kianmesforush.tutormanagement.datatypes.UserType;
