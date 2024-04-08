@@ -127,8 +127,13 @@ public class SearchPopup extends ScreenPopup {
 		}
 	}
 	
+	/**
+	 * Update a filter's status when toggled
+	 */
 	private class FilterUpdated implements ActionListener {
+		 // The filter
 		private final GeneralData filter;
+		 // The checkbox to toggle the filter's status
 		private final JCheckBox checkbox;
 		
 		public FilterUpdated(GeneralData filter, JCheckBox checkbox) {
@@ -136,13 +141,19 @@ public class SearchPopup extends ScreenPopup {
 			this.checkbox = checkbox;
 		}
 		
+		//Called when a checkbox is toggled
 		public void actionPerformed(ActionEvent e) {
+			//If the checkbox is set to active
 			if (checkbox.isSelected()) {
+				//Add the filter to the list of filters
 				filters.add(filter);
 			} else {
+				//Remove the filter from the list of filters
 				filters.remove(filter);
 			}
+			//Reload the filtered users based on updates to the filter list
 			loadUsers();
+			//Reload the JPanel contents
 			upperPanel.repaint();
 			upperPanel.revalidate();
 		}

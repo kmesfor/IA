@@ -159,9 +159,17 @@ public class EditUserPopup extends ScreenPopup {
 		}
 	}
 	
+	/**
+	 * Creates and saves a new User object based on input data.
+	 */
 	private class SaveBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			//Create a new User object using the name from the nameField text input
 			User user = new User(nameField.getText(), userType);
+			/*
+			Loop through the checkboxes for availabilities, classes, skills, and proficiencies,
+			if the checkbox is active, add the availability, class, skill, or proficiency to the user
+			 */
 			availabilityCheckboxes.forEach((session, checkbox) -> {
 				if (checkbox.isSelected()) user.availability.add(session);
 			});
@@ -175,19 +183,23 @@ public class EditUserPopup extends ScreenPopup {
 				if (checkbox.isSelected()) user.proficiencies.add(proficiency);
 			});
 			if (ScreenManager.getCurrentScreen() instanceof UserMgmtScreen) {
-				// Use this instead of accessing DataManager because this will also account
-				// for any changes made previously before user was edited
+				// Use the data stored within the Screen instead of accessing DataManager as this
+				// will account for any changes made previously before the user was edited
 				ArrayList<User> data = ((UserMgmtScreen) ScreenManager.getCurrentScreen()).getData();
+				//If existingData == null, a new user is being created,
+				// otherwise, an existing user is being updated
 				if (existingData == null) {
 					data.add(user);
 				} else {
 					data.set(data.indexOf(existingData), user);
 				}
+				//Return to the appropriate management screen
 				if (userType == UserType.TUTOR && ((UserMgmtScreen) ScreenManager.getCurrentScreen()).getType() == UserType.TUTOR) {
 					ScreenManager.setCurrentScreen(new UserMgmtScreen(data, UserType.TUTOR));
 				} else {
 					ScreenManager.setCurrentScreen(new UserMgmtScreen(data, UserType.TUTEE));
 				}
+				//Close the editing popup
 				ScreenManager.closePopup();
 			}
 		}

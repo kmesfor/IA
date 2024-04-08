@@ -57,22 +57,38 @@ public class ManageAptComponent extends ScreenComponent {
 		return panel;
 	}
 	
+	/**
+	 * Cancels an appointment that has been established
+	 */
 	private class CancelBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			//Remove the appointment from the list of appointments
 			DataManager.appointments.remove(apt);
+			//Refresh the ManageAptScreen to update changes
 			ScreenManager.setCurrentScreen(new ManageAptScreen());
 		}
 	}
 	
+	/**
+	 * Mark an appointment as complete, provide tutoring credit to the correct User objects.
+	 */
 	private class CompletedBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			//Loop through each tutor
 			DataManager.tutors.forEach(tutor -> {
+				//If the UUID of the tutor matches the UUID of the tutor in the
+				// appointment (is the same tutor), add tutoring hours to the tutor
 				if (apt.getTutor().getUUID().equals(tutor.getUUID())) tutor.addHours(apt.getDuration());
 			});
+			//Loop through each tutee
 			DataManager.tutees.forEach(tutee -> {
+				//If the UUID of the tutee matches the UUID of the tutee in the
+				// appointment (is the same tutee), add tutored hours to the tutee
 				if (apt.getTutee().getUUID().equals(tutee.getUUID())) tutee.addHours(apt.getDuration());
 			});
+			//Remove the appointment from the list of active appointments
 			DataManager.appointments.remove(apt);
+			//Refresh the ManageAptScreen to update changes
 			ScreenManager.setCurrentScreen(new ManageAptScreen());
 		}
 	}

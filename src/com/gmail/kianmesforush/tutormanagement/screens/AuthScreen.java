@@ -78,18 +78,26 @@ public class AuthScreen extends Screen {
 		return panel;
 	}
 	
-	//Event handlers
+	/**
+	 * Authenticate the user by checking inputted credentials against system credentials
+	 */
 	private class LoginBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			//Username is empty
 			if (usernameInput.getText().isEmpty()) {
 				setErrorMessage("Username is empty");
+			//Password is empty
 			} else if (passwordInput.getPassword().length == 0) {
 				setErrorMessage("Password is empty");
+			//Username is incorrect
 			} else if (!usernameInput.getText().equals(usernameCredential)) {
 				setErrorMessage("Invalid username");
+			//Password is incorrect
 			} else if (!String.valueOf(passwordInput.getPassword()).equals(passwordCredential)) {
 				setErrorMessage("Invalid password");
+			//Successful authentication
 			} else {
+				//Show the primary screen for authenticated users
 				ScreenManager.setCurrentScreen(new AuthUserPrimaryScreen());
 			}
 		}

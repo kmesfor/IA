@@ -69,9 +69,14 @@ public class UserMgmtComponent extends ScreenComponent {
 		return panel;
 	}
 	
+	/**
+	 * Removes a User object from a list of tutors or tutees depending on its type
+	 */
 	private class RemoveBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			//Remove from the list, does not remove from DataManager until action is saved on a different screen
 			users.remove(user);
+			//Displays a UserMgmtScreen for tutors or tutees depending on the deleted user's type
 			if (user.getType() == UserType.TUTOR) ScreenManager.setCurrentScreen(new UserMgmtScreen(users, UserType.TUTOR));
 			else ScreenManager.setCurrentScreen(new UserMgmtScreen(users, UserType.TUTEE));
 		}

@@ -4,7 +4,6 @@ import com.gmail.kianmesforush.tutormanagement.DataManager;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class GeneralData implements Serializable {

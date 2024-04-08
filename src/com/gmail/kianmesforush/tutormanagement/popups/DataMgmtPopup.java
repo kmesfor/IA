@@ -145,20 +145,31 @@ public class DataMgmtPopup extends Screen {
 		}
 	}
 	
+	/**
+	 * Remove an existing GeneralData object from the appropriate list
+	 */
 	private class RemoveBtnPressed implements ActionListener {
+		// The GeneralData object to be removed
 		private final GeneralData data;
 		public RemoveBtnPressed(GeneralData data) {
 			this.data = data;
 		}
 		public void actionPerformed(ActionEvent e) {
+			//Remove the object from the appropriate list
 			dataList.remove(data);
+			//Refresh the displayed screen to update changes
 			refresh();
 		}
 	}
 	
+	/**
+	 * Adds a new GeneralData object to the appropriate list based on text input
+	 */
 	private class AddBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			//Add the new object
 			dataList.add(new GeneralData(textField.getText(), type));
+			//Refresh the displayed screen to update changes
 			refresh();
 		}
 	}

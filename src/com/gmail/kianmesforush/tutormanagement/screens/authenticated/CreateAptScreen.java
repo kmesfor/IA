@@ -139,9 +139,14 @@ public class CreateAptScreen extends Screen {
 		}
 	}
 	
+	/**
+	 * Creates a new Appointment based on selected data and adds the appointment to {@link DataManager#appointments}
+	 */
 	private class CreateAptBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			//Create and add the appointment
 			DataManager.appointments.add(new Appointment(tutorSelected, tuteeSelected, sessionSelected, duration));
+			//Return to the appointment management screen
 			ScreenManager.setCurrentScreen(new ManageAptScreen());
 		}
 	}
