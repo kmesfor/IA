@@ -98,6 +98,7 @@ public class DataManager {
 	 * @param object the object to be serialized
 	 * @param path filepath to save the object
 	 */
+	// Source: https://www.geeksforgeeks.org/serialization-in-java/
 	private static void serialize(Object object, String path) {
 		try {
 			//Create a new output stream to write to files
@@ -123,7 +124,7 @@ public class DataManager {
 	 * @param path the file path of the file to deserialize
 	 * @return an object that was initially serialized, must cast the type before usage
 	 */
-	// https://www.baeldung.com/java-how-to-create-a-file
+	// Source: https://www.baeldung.com/java-how-to-create-a-file
 	private static Object deserialize(String path) {
 		Object returnValue;
 		try {

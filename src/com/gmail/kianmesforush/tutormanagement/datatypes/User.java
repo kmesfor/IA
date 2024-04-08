@@ -69,12 +69,18 @@ public class User implements Serializable {
 	 * Returns True if the user applies. Returns false is a user does not.
 	 */
 	public Boolean isIncluded(ArrayList<GeneralData> filters) {
+		//Loop through each filter
 		for (GeneralData filter : filters) {
+			// if the filter type is a class and the user's classes do not include the filter, return false
 			if (filter.getType() == GeneralDataType.CLASS && (!DataManager.listContains(classNames, filter))) return false;
+			// if the filter type is a session and  the user's sessions do not include the filter, return false
 			if (filter.getType() == GeneralDataType.SESSION && (!DataManager.listContains(availability, filter))) return false;
+			// if the filter type is a skill and  the user's skills do not include the filter, return false
 			if (filter.getType() == GeneralDataType.SKILL && (!DataManager.listContains(skills, filter))) return false;
+			// if the filter type is a proficiency and  the user's proficiencies do not include the filter, return false
 			if (filter.getType() == GeneralDataType.PROFICIENCY && (!DataManager.listContains(proficiencies, filter))) return false;
 		}
+		// if all filters are included, return true
 		return true;
 	}
 	
