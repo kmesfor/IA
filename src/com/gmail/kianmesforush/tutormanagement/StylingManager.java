@@ -37,8 +37,11 @@ public class StylingManager {
 	 * @param type the type of styling to be applied
 	 */
 	public static void stylize(JButton button, StyleType type) {
+		//Allows the button background to be seen
 		button.setOpaque(true);
+		//Set the font
 		button.setFont(StylePreset.FONT_BOLD);
+		//Stylize background and foreground depending on input StyleType
 		if (type == StyleType.PRIMARY) {
 			button.setBackground(StylePreset.PRIMARY_GREEN);
 			button.setForeground(StylePreset.WHITE);
@@ -46,6 +49,7 @@ public class StylingManager {
 			button.setBackground(StylePreset.LIGHT_GREEN);
 			button.setForeground(StylePreset.PRIMARY_GREEN);
 		}
+		//Make the button react to hover movements if the button is enabled (can be clicked)
 		Color bg = button.getBackground();
 		Color fg = button.getForeground();
 		if (button.isEnabled()) {
@@ -64,6 +68,7 @@ public class StylingManager {
 			});
 		}
 		
+		//Add padding (empty border) around a regular line border
 		button.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createLineBorder(StylePreset.GRAY, 1, true),
 				BorderFactory.createEmptyBorder(5,5,5,5)
@@ -76,8 +81,11 @@ public class StylingManager {
 	 * @param type the type of styling to be applied
 	 */
 	public static void stylize(JPanel panel, StyleType type) {
+		//Allow the panel background to be seen
 		panel.setOpaque(true);
-		makeChildrenTranslucent(panel);
+		//Make all children JPanels transparent (see method definition for explanation)
+		makeChildrenTransparent(panel);
+		//Style the JPanel accordingly
 		if (type == StyleType.PRIMARY) {
 			panel.setBackground(StylePreset.LIGHT_GREEN);
 		} else if (type == StyleType.SECONDARY) {
@@ -91,11 +99,14 @@ public class StylingManager {
 	 * @param type the type of styling to be applied
 	 */
 	public static void stylize(JTextField textField, StyleType type) {
+		//Set the font
 		textField.setFont(StylePreset.FONT_BOLD);
+		//Add padding (empty border) around a regular line border
 		textField.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createLineBorder(StylePreset.GRAY, 1, true),
 				BorderFactory.createEmptyBorder(5,5,5,5)
 		));
+		//Style the JTextField accordingly
 		if (type == StyleType.PRIMARY) {
 			textField.setBackground(StylePreset.LIGHT_GREEN);
 			textField.setForeground(StylePreset.PRIMARY_GREEN);
@@ -111,14 +122,17 @@ public class StylingManager {
 	 * @param type the type of styling to be applied
 	 */
 	public static void stylize(JLabel label, StyleType type) {
+		//Align text vertically and horizontally center
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setVerticalAlignment(SwingConstants.CENTER);
+		//Style the JLabel accordingly
 		if (type == StyleType.PRIMARY) {
 			label.setFont(StylePreset.FONT_BOLD);
 			label.setForeground(StylePreset.PRIMARY_GREEN);
 		} else if (type == StyleType.SECONDARY) {
 			label.setFont(StylePreset.FONT_NORMAL);
 			label.setForeground(StylePreset.GRAY);
+		//Error styling for red text
 		} else if (type == StyleType.ERROR) {
 			label.setFont(StylePreset.FONT_NORMAL);
 			label.setForeground(StylePreset.ERROR);
@@ -131,6 +145,7 @@ public class StylingManager {
 	 * @param type the type of styling to be applied
 	 */
 	public static void stylize(JCheckBox checkbox, StyleType type) {
+		//Style the JCheckBox accordingly
 		if (type == StyleType.PRIMARY) {
 			checkbox.setFont(StylePreset.FONT_BOLD);
 			checkbox.setForeground(StylePreset.PRIMARY_GREEN);
@@ -146,7 +161,9 @@ public class StylingManager {
 	 * @param type the type of styling to be applied
 	 */
 	public static void stylize(JSpinner spinner, StyleType type) {
+		//Set the text font
 		spinner.setFont(StylePreset.FONT_BOLD);
+		//Style the JSpinner accordingly
 		if (type == StyleType.PRIMARY) {
 			spinner.setBackground(StylePreset.LIGHT_GREEN);
 			spinner.setForeground(StylePreset.PRIMARY_GREEN);
@@ -162,7 +179,9 @@ public class StylingManager {
 	 * @param type the type of styling to be applied
 	 */
 	public static void stylize(JTabbedPane pane, StyleType type) {
+		//Set the text font
 		pane.setFont(StylePreset.FONT_BOLD);
+		//Style the JTabbedPane accordingly
 		if (type == StyleType.PRIMARY) {
 			pane.setBackground(StylePreset.LIGHT_GREEN);
 			pane.setForeground(StylePreset.PRIMARY_GREEN);
@@ -179,10 +198,10 @@ public class StylingManager {
 	 * being applied.
 	 * @param panel the parent JPanel
 	 */
-	private static void makeChildrenTranslucent(JPanel panel) {
+	private static void makeChildrenTransparent(JPanel panel) {
 		for (Component component : panel.getComponents()) {
 			if (component instanceof JPanel) {
-				makeChildrenTranslucent((JPanel) component);
+				makeChildrenTransparent((JPanel) component);
 				((JPanel) component).setOpaque(false);
 			}
 		}

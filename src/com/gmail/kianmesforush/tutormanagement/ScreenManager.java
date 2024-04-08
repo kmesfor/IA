@@ -79,15 +79,16 @@ public class ScreenManager {
 	 * @param screen the screen to be shown
 	 */
 	public static void setCurrentScreen(Screen screen) {
-		// https://stackoverflow.com/questions/21365570/how-to-dispose-a-jpanel-jpanel1-dispose-or-equivalent
-		// https://stackoverflow.com/questions/17608421/how-to-reload-a-jpanel
+		// Source: https://stackoverflow.com/questions/21365570/how-to-dispose-a-jpanel-jpanel1-dispose-or-equivalent
+		// Source: https://stackoverflow.com/questions/17608421/how-to-reload-a-jpanel
 		
 		//Hide the pop out frame
 		popupFrame.setVisible(false);
 		
-		//Clean the currentScreen panel and frame
+		//Set the screen
 		currentScreen = screen;
 		frame.setContentPane(currentScreen.show(new JPanel()));
+		//Clean the currentScreen panel and frame and repaint
 		frame.repaint();
 		frame.revalidate();
 	}
@@ -109,9 +110,12 @@ public class ScreenManager {
 	 * @param popup the popup
 	 */
 	public static void showPopup(Screen popup) {
+		//Set the popupFrame to the new Popup
 		popupFrame.setContentPane(popup.show(new JPanel()));
+		//Re-render the frame
 		popupFrame.repaint();
 		popupFrame.revalidate();
+		//Make the frame visible
 		popupFrame.setVisible(true);
 	}
 	
