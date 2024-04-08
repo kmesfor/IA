@@ -1,10 +1,9 @@
 package com.gmail.kianmesforush.tutormanagement;
 
+import com.gmail.kianmesforush.tutormanagement.datatypes.StyleType;
+
 import javax.swing.*;
-import javax.swing.text.Style;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -13,8 +12,14 @@ import java.awt.event.MouseEvent;
 //https://stackoverflow.com/questions/29460600/how-to-set-a-background-color-to-a-jframe-containing-multiple-jpanels-jbuttons
 //https://gist.github.com/anonymous/ceab52cc7082c34baf1c
 
-
+/**
+ * The static management class for stylizing the program's components.
+ * Utilizes StylePreset and StyleType
+ */
 public class StylingManager {
+	/**
+	 * The static constant class holding color and font presets.
+	 */
 	public static class StylePreset {
 		public static final Color LIGHT_GREEN = new Color(204, 234, 209);
 		public static final Color PRIMARY_GREEN = new Color(105, 190, 124);
@@ -26,6 +31,11 @@ public class StylingManager {
 		
 	}
 	
+	/**
+	 * Stylizes a JButton according to a StyleType.
+	 * @param button the JButton to be styled
+	 * @param type the type of styling to be applied
+	 */
 	public static void stylize(JButton button, StyleType type) {
 		button.setOpaque(true);
 		button.setFont(StylePreset.FONT_BOLD);
@@ -60,6 +70,11 @@ public class StylingManager {
 		));
 	}
 	
+	/**
+	 * Stylizes a JPanel according to a StyleType.
+	 * @param panel the JPanel to be styled
+	 * @param type the type of styling to be applied
+	 */
 	public static void stylize(JPanel panel, StyleType type) {
 		panel.setOpaque(true);
 		makeChildrenTranslucent(panel);
@@ -70,6 +85,11 @@ public class StylingManager {
 		}
 	}
 	
+	/**
+	 * Stylizes a JTextField according to a StyleType.
+	 * @param textField the JTextField to be styled
+	 * @param type the type of styling to be applied
+	 */
 	public static void stylize(JTextField textField, StyleType type) {
 		textField.setFont(StylePreset.FONT_BOLD);
 		textField.setBorder(BorderFactory.createCompoundBorder(
@@ -85,6 +105,11 @@ public class StylingManager {
 		}
 	}
 	
+	/**
+	 * Stylizes a JLabel according to a StyleType.
+	 * @param label the JLabel to be styled
+	 * @param type the type of styling to be applied
+	 */
 	public static void stylize(JLabel label, StyleType type) {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setVerticalAlignment(SwingConstants.CENTER);
@@ -100,6 +125,11 @@ public class StylingManager {
 		}
 	}
 	
+	/**
+	 * Stylizes a JCheckBox according to a StyleType.
+	 * @param checkbox the JCheckBox to be styled
+	 * @param type the type of styling to be applied
+	 */
 	public static void stylize(JCheckBox checkbox, StyleType type) {
 		if (type == StyleType.PRIMARY) {
 			checkbox.setFont(StylePreset.FONT_BOLD);
@@ -110,6 +140,11 @@ public class StylingManager {
 		}
 	}
 	
+	/**
+	 * Stylizes a JSpinner according to a StyleType.
+	 * @param spinner the JSpinner to be styled
+	 * @param type the type of styling to be applied
+	 */
 	public static void stylize(JSpinner spinner, StyleType type) {
 		spinner.setFont(StylePreset.FONT_BOLD);
 		if (type == StyleType.PRIMARY) {
@@ -121,6 +156,11 @@ public class StylingManager {
 		}
 	}
 	
+	/**
+	 * Stylizes a JTabbedPane according to a StyleType.
+	 * @param pane the JTabbedPane to be styled
+	 * @param type the type of styling to be applied
+	 */
 	public static void stylize(JTabbedPane pane, StyleType type) {
 		pane.setFont(StylePreset.FONT_BOLD);
 		if (type == StyleType.PRIMARY) {
@@ -132,6 +172,13 @@ public class StylingManager {
 		}
 	}
 	
+	/**
+	 * Recursively makes all JPanels embedded within a parent JPanel transparent.
+	 * The purpose of this method is to ensure that when setting the background
+	 * color of a JPanel, overlapping panels are not preventing the color from
+	 * being applied.
+	 * @param panel the parent JPanel
+	 */
 	private static void makeChildrenTranslucent(JPanel panel) {
 		for (Component component : panel.getComponents()) {
 			if (component instanceof JPanel) {
