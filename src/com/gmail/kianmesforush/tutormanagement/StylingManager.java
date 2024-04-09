@@ -7,10 +7,10 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-//https://stackoverflow.com/questions/4172940/how-to-set-background-color-of-a-button-in-java-gui
-//https://stackoverflow.com/questions/14159536/creating-jbutton-with-customized-look
-//https://stackoverflow.com/questions/29460600/how-to-set-a-background-color-to-a-jframe-containing-multiple-jpanels-jbuttons
-//https://gist.github.com/anonymous/ceab52cc7082c34baf1c
+//Source: https://stackoverflow.com/questions/4172940/how-to-set-background-color-of-a-button-in-java-gui
+//Source: https://stackoverflow.com/questions/14159536/creating-jbutton-with-customized-look
+//Source: https://stackoverflow.com/questions/29460600/how-to-set-a-background-color-to-a-jframe-containing-multiple-jpanels-jbuttons
+//Source: https://gist.github.com/anonymous/ceab52cc7082c34baf1c
 
 /**
  * The static management class for stylizing the program's components.

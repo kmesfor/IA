@@ -12,7 +12,7 @@ import java.util.UUID;
  * This data type is serializable.
  */
 public class GeneralData implements Serializable {
-	//https://www.tutorialspoint.com/java/java_serialization.htm
+	//Source: https://www.tutorialspoint.com/java/java_serialization.htm
 	@Serial
 	private static final long serialVersionUID = 1L;
 	

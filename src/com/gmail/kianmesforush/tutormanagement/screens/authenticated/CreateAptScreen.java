@@ -40,7 +40,7 @@ public class CreateAptScreen extends Screen {
 	}
 	
 	
-	//spinner: https://docs.oracle.com/javase/tutorial/uiswing/components/spinner.html#change
+	//Source: https://docs.oracle.com/javase/tutorial/uiswing/components/spinner.html#change
 	public JComponent show(JPanel panel) {
 		//Components are declared in #show() so refresh occurs properly
 		JLabel tutorTextLabel = new JLabel("Tutor: ");

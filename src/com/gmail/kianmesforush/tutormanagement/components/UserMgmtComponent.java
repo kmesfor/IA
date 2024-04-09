@@ -64,7 +64,7 @@ public class UserMgmtComponent extends ScreenComponent {
 		StylingManager.stylize(removeBtn, StyleType.SECONDARY);
 		StylingManager.stylize(panel, StyleType.PRIMARY);
 		
-		//https://stackoverflow.com/questions/22920046/how-to-set-fix-size-of-jlabel
+		//Source: https://stackoverflow.com/questions/22920046/how-to-set-fix-size-of-jlabel
 		panel.setPreferredSize(new Dimension(TutorManagement.SCREEN_WIDTH - 50, 40));
 		return panel;
 	}

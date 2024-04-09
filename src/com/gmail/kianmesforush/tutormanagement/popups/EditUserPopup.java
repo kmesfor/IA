@@ -54,7 +54,7 @@ public class EditUserPopup extends ScreenPopup {
 	
 	public JComponent show(JPanel panel) {
 		panel.setLayout(new BorderLayout());
-		//https://stackoverflow.com/questions/5328405/jpanel-padding-in-java
+		//Source: https://stackoverflow.com/questions/5328405/jpanel-padding-in-java
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		namePanel.setLayout(new BorderLayout());

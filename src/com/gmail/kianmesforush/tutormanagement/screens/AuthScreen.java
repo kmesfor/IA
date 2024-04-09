@@ -15,10 +15,10 @@ import java.util.Scanner;
 public class AuthScreen extends Screen {
 	
 	/*
-	https://docs.oracle.com/javase/8/docs/api/javax/swing/JTextField.html
-	https://docs.oracle.com/javase/8/docs/api/javax/swing/JPasswordField.html
-	https://stackoverflow.com/questions/6810581/how-to-center-the-text-in-a-jlabel
-	https://stackoverflow.com/questions/7655127/how-to-convert-a-char-array-back-to-a-string
+	Source: https://docs.oracle.com/javase/8/docs/api/javax/swing/JTextField.html
+	Source: https://docs.oracle.com/javase/8/docs/api/javax/swing/JPasswordField.html
+	Source: https://stackoverflow.com/questions/6810581/how-to-center-the-text-in-a-jlabel
+	Source: https://stackoverflow.com/questions/7655127/how-to-convert-a-char-array-back-to-a-string
 	 */
 	
 	private final JLabel usernameLabel = new JLabel("Username");

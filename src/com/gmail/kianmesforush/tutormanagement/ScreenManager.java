@@ -54,7 +54,7 @@ public class ScreenManager {
 		frame.setVisible(true);
 		
 		//Ignore close operation to shut down application cleanly instead
-		//https://stackoverflow.com/questions/12210972/setdefaultcloseoperation-to-show-a-jframe-instead
+		//Source: https://stackoverflow.com/questions/12210972/setdefaultcloseoperation-to-show-a-jframe-instead
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
