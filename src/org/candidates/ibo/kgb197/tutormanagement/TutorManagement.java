@@ -50,9 +50,11 @@ public class TutorManagement {
 	 * @param args the input arguments
 	 */
 	public static void main(String[] args) {
-		DataManager.initialize();
 		//Initialize the ScreenManager which will drive the main function of the app
 		ScreenManager.initialize(new HomeScreen());
+		//DataManager should be initialized before the ScreenManager to allow ErrorScreen objects
+		//to be shown. However, the Screen that is initialized cannot access data from DataManager
+		DataManager.initialize();
 	}
 	
 	/**
