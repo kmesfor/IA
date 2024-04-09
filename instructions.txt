@@ -1,0 +1,17 @@
+For the program to properly function, the following files must exist or be created:
+- Directory: data/ --- A data folder must be created in the same directory as the "src/" directory. The program will create and manage files within the directory
+- File: credentials.txt --- A file containing the username and password to log into the program. The first line is the username, with the password on the next line
+
+Example file structure:
+src/
+	org.candidates.ibo.kgb197.tutormanagement/
+		components/
+			...
+		datatypes/
+			...
+		popups/
+			...
+		...
+data/
+	...
+credentials.txt
