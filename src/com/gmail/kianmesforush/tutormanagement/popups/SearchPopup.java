@@ -104,6 +104,12 @@ public class SearchPopup extends ScreenPopup {
 		}
 	}
 	
+	/**
+	 * Loops through each user and adds them to the filteredUsers list if
+	 * they are included within the designated filters. filteredUsers will be
+	 * displayed in the resultsPanel of the screen
+	 * @return the ArrayList of filteredUsers
+	 */
 	private ArrayList<User> getFilteredUsers() {
 		ArrayList<User> filteredUsers = new ArrayList<>();
 		users.forEach((User user) -> {
@@ -112,6 +118,9 @@ public class SearchPopup extends ScreenPopup {
 		return filteredUsers;
 	}
 	
+	/**
+	 * Populate the resultsPanel with all users that are included in the filters list
+	 */
 	private void loadUsers() {
 		ArrayList<User> filteredUsers = getFilteredUsers();
 		resultsPanel.removeAll();

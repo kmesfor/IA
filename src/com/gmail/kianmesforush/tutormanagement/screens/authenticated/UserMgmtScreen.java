@@ -44,8 +44,14 @@ public class UserMgmtScreen extends Screen {
 	public UserType getType() {
 		return type;
 	}
-
+	
+	/**
+	 * Display the User management screen for a list of tutors or tutees
+	 * @param panel the panel to display components on
+	 * @return a JComponent containing the Screen's rendered components
+	 */
 	public JComponent show(JPanel panel) {
+		//Use BorderLayout for the main panel
 		panel.setLayout(new BorderLayout());
 		
 		//This must be initialized in #show() to ensure duplicate UserMgmtComponents
@@ -53,24 +59,29 @@ public class UserMgmtScreen extends Screen {
 		//Container for list of UserMgmtComponents
 		JPanel listPanel = new JPanel(new GridLayout(users.size(), 1));
 		
+		//Add a UserMgmtComponent to the listPanel for each user
 		for (int i = 0; i < users.size(); i++) {
 			listPanel.add(new UserMgmtComponent(users, i).show(new JPanel()));
 		}
 		
+		//Set up back button
 		backBtn.addActionListener(new BackBtnPressed());
 		btnsPanel.add(backBtn);
 		
+		//Set up add user button
 		addBtn.addActionListener(new AddBtnPressed());
 		btnsPanel.add(addBtn);
 
+		//Set up save data button
 		saveBtn.addActionListener(new SaveBtnPressed());
 		btnsPanel.add(saveBtn);
 		
-		
-		// https://stackoverflow.com/questions/30292519/scrollpane-adding-to-grid-layout
+		//Source: https://stackoverflow.com/questions/30292519/scrollpane-adding-to-grid-layout
+		//Add subpanels to primary panel
 		panel.add(new JScrollPane(listPanel), BorderLayout.CENTER);
 		panel.add(btnsPanel, BorderLayout.SOUTH);
 		
+		//Stylize
 		StylingManager.stylize(backBtn, StyleType.SECONDARY);
 		StylingManager.stylize(addBtn, StyleType.PRIMARY);
 		StylingManager.stylize(saveBtn, StyleType.PRIMARY);

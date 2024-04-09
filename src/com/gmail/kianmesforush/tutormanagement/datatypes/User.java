@@ -7,15 +7,26 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Stores the data of a tutor or tutee. User objects can be used for
+ * both tutors and tutees by specifying a UserType. A user object holds
+ * ArrayLists of each type of GeneralData (sessions, classes, skills, and proficiencies)
+ * and a unique user identifier (UUID) to ensure similar User objects are unique.
+ * This data type is serializable.
+ */
 public class User implements Serializable {
-	//https://www.tutorialspoint.com/java/java_serialization.htm
+	//Source: https://www.tutorialspoint.com/java/java_serialization.htm
 	@Serial
 	private static final long serialVersionUID = 1L;
+	
+	//Data
 	private final String name;
 	private final UserType type;
 	private int hoursCompleted = 0;
+	//Generate a new UUID
 	private String uniqueID = UUID.randomUUID().toString();
 	
+	//List of GeneralData objects
 	public final ArrayList<GeneralData> availability = new ArrayList<>();
 	public final ArrayList<GeneralData> classNames = new ArrayList<>();
 	public final ArrayList<GeneralData> skills = new ArrayList<>();
@@ -37,11 +48,18 @@ public class User implements Serializable {
 		proficiencies.addAll(user.proficiencies);
 		notes.addAll(user.notes);
 	}
+	
+	/**
+	 * Instantiate a User object
+	 * @param name the name of the user
+	 * @param type the type of user
+	 */
 	public User(String name, UserType type) {
 		this.name = name;
 		this.type = type;
 	}
 	
+	//Getter methods
 	public String getName() {
 		return this.name;
 	}
@@ -54,12 +72,13 @@ public class User implements Serializable {
 		return hoursCompleted;
 	}
 	
-	public void addHours(int hours) {
-		this.hoursCompleted += hours;
-	}
-	
 	public String getUUID() {
 		return uniqueID;
+	}
+	
+	//Add tutoring hours to a User
+	public void addHours(int hours) {
+		this.hoursCompleted += hours;
 	}
 	
 	/**
@@ -84,6 +103,9 @@ public class User implements Serializable {
 		return true;
 	}
 	
+	/**
+	 * @return a String representation of the User object
+	 */
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("\n-----\n")

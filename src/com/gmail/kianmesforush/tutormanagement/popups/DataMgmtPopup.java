@@ -48,32 +48,46 @@ public class DataMgmtPopup extends Screen {
 		dataTypeLabel = new JLabel(menuLabelText);
 	}
 	
+	/**
+	 * Display the GeneralData management screen for a list of the same GeneralData
+	 * @param panel the panel to display components on
+	 * @return a JComponent containing the ScreenPopup's rendered components
+	 */
 	public JComponent show(JPanel panel) {
+		//Use BorderLayout for the main panel
 		panel.setLayout(new BorderLayout());
 		
+		//Use BorderLayout for the sub panel
 		newDataPanel.setLayout(new BorderLayout());
 		
+		//Align and add the data type label
 		dataTypeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		upperPanel.add(dataTypeLabel, BorderLayout.NORTH);
 		
+		//Add an input text field
 		newDataPanel.add(textField, BorderLayout.CENTER);
+		
+		//Set up an add GeneralData button
 		addBtn.addActionListener(new AddBtnPressed());
 		newDataPanel.add(addBtn, BorderLayout.EAST);
 		
 		upperPanel.setLayout(new BorderLayout());
 		upperPanel.add(newDataPanel, BorderLayout.SOUTH);
 		
-		
 		//Ensures there are at least 10 rows (styling)
 		dataPanel.setLayout(new GridLayout(Math.max(dataList.size(), 10), 1));
+		//Add a remove button and name label for each GeneralData within the list
 		for (GeneralData data : dataList) {
+			//Set up remove button
 			JButton componentBtn = new JButton("X");
 			componentBtn.addActionListener(new RemoveBtnPressed(data));
 			StylingManager.stylize(componentBtn, StyleType.SECONDARY);
 			
+			//Set up panel
 			JPanel componentPanel = new JPanel(new BorderLayout());
 			componentPanel.add(componentBtn, BorderLayout.WEST);
 			
+			//Set up label
 			JLabel componentLabel = new JLabel(data.getInfo());
 			componentPanel.add(componentLabel, BorderLayout.CENTER);
 			StylingManager.stylize(componentLabel, StyleType.SECONDARY);
@@ -82,16 +96,20 @@ public class DataMgmtPopup extends Screen {
 		
 		lowerPanel.setLayout(new BorderLayout());
 		
+		//Set up back button
 		backBtn.addActionListener(new BackBtnPressed());
 		lowerPanel.add(backBtn, BorderLayout.WEST);
 		
+		//Set up save button
 		saveBtn.addActionListener(new SaveBtnPressed());
 		lowerPanel.add(saveBtn, BorderLayout.EAST);
 		
+		//Add components to panel
 		panel.add(upperPanel, BorderLayout.NORTH);
 		panel.add(dataPanel, BorderLayout.CENTER);
 		panel.add(lowerPanel, BorderLayout.SOUTH);
 		
+		//Stylize components
 		StylingManager.stylize(dataTypeLabel, StyleType.SECONDARY);
 		StylingManager.stylize(textField, StyleType.PRIMARY);
 		StylingManager.stylize(addBtn, StyleType.PRIMARY);

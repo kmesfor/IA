@@ -1,7 +1,8 @@
 package com.gmail.kianmesforush.tutormanagement.datatypes;
 
 /**
- * A
+ *  An enum which represents the different stylization
+ *  presets that can be used with StyleManager.
  */
 public enum StyleType {
 	PRIMARY,
