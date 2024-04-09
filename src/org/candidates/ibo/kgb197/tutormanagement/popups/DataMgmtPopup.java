@@ -33,6 +33,14 @@ public class DataMgmtPopup extends Screen {
 	private final JTextField textField;
 	private final JLabel dataTypeLabel;
 	
+	/**
+	 * A popup that allows a GeneralData object to be edited
+	 * @param addBtnText the text of the add object button
+	 * @param inputTextFieldText the text of the input text field
+	 * @param menuLabelText the text of the menu label
+	 * @param dataList the list of data to add to
+	 * @param type the type of GeneralData object
+	 */
 	@SuppressWarnings("unchecked")
 	public DataMgmtPopup(String addBtnText, String inputTextFieldText, String menuLabelText, ArrayList<GeneralData> dataList, GeneralDataType type) {
 		this.addBtnText = addBtnText;
@@ -129,36 +137,54 @@ public class DataMgmtPopup extends Screen {
 	private class SaveBtnPressed implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (type == GeneralDataType.CLASS) {
+				//Loop through class names
 				DataManager.classNames.forEach(data -> {
+					//If the dataList does not contain the DataManager list index,
+					// it was removed, therefore safely destroy the GeneralData
 					if (!DataManager.listContains(dataList, data)) {
 						data.destroy();
 					}
 				});
+				//Set the saved classNames to the updated dataList
 				DataManager.classNames = dataList;
 			} else if (type == GeneralDataType.SKILL) {
+				//Loop through skills
 				DataManager.skills.forEach(data -> {
+					//If the dataList does not contain the DataManager list index,
+					// it was removed, therefore safely destroy the GeneralData
 					if (!DataManager.listContains(dataList, data)) {
 						data.destroy();
 					}
 				});
+				//Set the saved skills to the updated dataList
 				DataManager.skills = dataList;
 			} else if (type == GeneralDataType.SESSION) {
+				//Loop through sessions
 				DataManager.sessions.forEach(data -> {
+					//If the dataList does not contain the DataManager list index,
+					// it was removed, therefore safely destroy the GeneralData
 					if (!DataManager.listContains(dataList, data)) {
 						data.destroy();
 					}
 				});
+				//Set the saved sessions to the updated dataList
 				DataManager.sessions = dataList;
 			} else if (type == GeneralDataType.PROFICIENCY) {
+				//Loop through proficiencies
 				DataManager.proficiencies.forEach(data -> {
+					//If the dataList does not contain the DataManager list index,
+					// it was removed, therefore safely destroy the GeneralData
 					if (!DataManager.listContains(dataList, data)) {
 						data.destroy();
 					}
 				});
+				//Set the saved proficiencies to the updated dataList
 				DataManager.proficiencies = dataList;
 			} else {
+				//Display error
 				System.out.println("Invalid GeneralData tried to be removed");
 			}
+			//Close popup
 			ScreenManager.closePopup();
 		}
 	}
@@ -192,6 +218,9 @@ public class DataMgmtPopup extends Screen {
 		}
 	}
 	
+	/**
+	 * Refresh the displayed screen to update changes
+	 */
 	private void refresh() {
 		ScreenManager.showPopup(new DataMgmtPopup(addBtnText, inputTextFieldText, menuLabelText, dataList, type));
 	}

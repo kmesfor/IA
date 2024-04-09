@@ -28,6 +28,11 @@ public class UserMgmtComponent extends ScreenComponent {
 	private final User user;
 	private final ArrayList<User> users;
 	
+	/**
+	 * A component that allows the user to manage a tutor or tutee
+	 * @param users the list of users (tutors or tutees)
+	 * @param index the index of the user to manage
+	 */
 	public UserMgmtComponent(ArrayList<User> users, int index) {
 		this.users = users;
 		this.user = users.get(index);
@@ -47,7 +52,6 @@ public class UserMgmtComponent extends ScreenComponent {
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setVerticalAlignment(SwingConstants.CENTER);
 		panel.add(nameLabel);
-		
 		notesBtn.addActionListener(new NotesBtnPressed());
 		panel.add(notesBtn);
 		

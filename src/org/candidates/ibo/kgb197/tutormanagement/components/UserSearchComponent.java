@@ -25,12 +25,22 @@ public class UserSearchComponent extends ScreenComponent {
 	private final User user;
 	private final JPanel sidePanel = new JPanel(new BorderLayout());
 	
+	/**
+	 * A component displaying each result of filtering users
+	 * @param users the list of users that have been filtered
+	 * @param user the user to create a component for
+	 */
 	public UserSearchComponent(ArrayList<User> users, User user) {
 		this.user = user;
 		numberLabel.setText("" + (users.indexOf(user) + 1));
 		nameLabel.setText(user.getName());
 	}
 	
+	/**
+	 * Display the UserSearchComponent for a User object
+	 * @param panel the JPanel to display components on
+	 * @return a JComponent containing the Screen's rendered components
+	 */
 	public JComponent show(JPanel panel) {
 		
 		panel.setLayout(new GridLayout(1, 2));

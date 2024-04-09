@@ -25,6 +25,11 @@ public class ManageAptComponent extends ScreenComponent {
 	
 	private final Appointment apt;
 	
+	/**
+	 * A component that allows the user to cancel and mark appointments as complete
+	 * @param apts the list of appointments
+	 * @param index the index of the appointment to create a component for
+	 */
 	public ManageAptComponent(ArrayList<Appointment> apts, int index) {
 		this.apt = apts.get(index);
 		
@@ -32,6 +37,11 @@ public class ManageAptComponent extends ScreenComponent {
 		dateLabel.setText(apt.getSession().getInfo());
 	}
 	
+	/**
+	 * Display the Appointment management component for an Appointment object
+	 * @param panel the JPanel to display components on
+	 * @return a JComponent containing the Screen's rendered components
+	 */
 	public JComponent show(JPanel panel) {
 		panel.setLayout(new GridLayout(1, 4));
 		panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
