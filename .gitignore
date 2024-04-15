@@ -29,5 +29,5 @@ bin/
 .DS_Store
 
 ### Program-specific ###
-/data
+src/org/candidates/ibo/kgb197/tutormanagement/data/
 /javadocs

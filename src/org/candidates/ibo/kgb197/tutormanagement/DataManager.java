@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class DataManager {
+	private static final String DIRECTORY = "src/org/candidates/ibo/kgb197/tutormanagement/data/";
 	/*
 	Data that is accessible from DataManager. Other components of the program should edit data directly
 	through DataManager.[field] (ex: DataManager.sessions.add(new Session())) to edit data. TutorManagement
@@ -29,26 +30,26 @@ public class DataManager {
 	//thus the cast is safe as long as serialization and deserialization use the same type
 	@SuppressWarnings("unchecked")
 	public static void initialize() {
-		sessions = (ArrayList<GeneralData>) deserialize("data/sessions");
-		classNames = (ArrayList<GeneralData>) deserialize("data/classes");
-		proficiencies = (ArrayList<GeneralData>) deserialize("data/proficiencies");
-		skills = (ArrayList<GeneralData>) deserialize("data/skills");
-		tutors = (ArrayList<User>) deserialize("data/tutors");
-		tutees = (ArrayList<User>) deserialize("data/tutees");
-		appointments = (ArrayList<Appointment>) deserialize("data/appointments");
+		sessions = (ArrayList<GeneralData>) deserialize(DIRECTORY + "sessions");
+		classNames = (ArrayList<GeneralData>) deserialize(DIRECTORY + "classes");
+		proficiencies = (ArrayList<GeneralData>) deserialize(DIRECTORY + "proficiencies");
+		skills = (ArrayList<GeneralData>) deserialize(DIRECTORY + "skills");
+		tutors = (ArrayList<User>) deserialize(DIRECTORY + "tutors");
+		tutees = (ArrayList<User>) deserialize(DIRECTORY + "tutees");
+		appointments = (ArrayList<Appointment>) deserialize(DIRECTORY + "appointments");
 	}
 	
 	/**
 	 * Save field data to external files located in the data/ directory
 	 */
 	public static void save() {
-		serialize(sessions, "data/sessions");
-		serialize(classNames, "data/classes");
-		serialize(proficiencies, "data/proficiencies");
-		serialize(skills, "data/skills");
-		serialize(tutors, "data/tutors");
-		serialize(tutees, "data/tutees");
-		serialize(appointments, "data/appointments");
+		serialize(sessions, DIRECTORY + "sessions");
+		serialize(classNames, DIRECTORY + "classes");
+		serialize(proficiencies, DIRECTORY + "proficiencies");
+		serialize(skills, DIRECTORY + "skills");
+		serialize(tutors, DIRECTORY + "tutors");
+		serialize(tutees, DIRECTORY + "tutees");
+		serialize(appointments, DIRECTORY + "appointments");
 	}
 	
 	/**
@@ -139,6 +140,11 @@ public class DataManager {
 			objectStream.close();
 		} catch (FileNotFoundException err) {
 			//Try to create the file if it is not found
+			//Source: https://stackoverflow.com/questions/3634853/how-to-create-a-directory-in-java
+			File dir = new File(DIRECTORY);
+			if (!dir.exists()){
+				dir.mkdirs();
+			}
 			File file = new File(path);
 			try {
 				//Create file, show error if the file could not be created

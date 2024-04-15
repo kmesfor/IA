@@ -52,6 +52,7 @@ public class AuthScreen extends Screen {
 		passwordPanel.add(passwordInput, BorderLayout.SOUTH);
 		
 		fieldsPanel.add(usernamePanel, BorderLayout.NORTH);
+		fieldsPanel.add(new JLabel("Username is \"username\" and password is \"password\""));
 		fieldsPanel.add(passwordPanel, BorderLayout.SOUTH);
 		
 		backBtn.addActionListener(new BackBtnPressed());
@@ -124,21 +125,26 @@ public class AuthScreen extends Screen {
 	}
 	
 	private void loadCredentials() {
-		try {
-			Scanner scanner = new Scanner(new File("credentials.txt"));
-			if (scanner.hasNext()) {
-				usernameCredential = scanner.next();
-			} else {
-				setErrorMessage("Username not found in credentials.txt");
-				return;
-			}
-			if (scanner.hasNext()) {
-				passwordCredential = scanner.next();
-			} else {
-				setErrorMessage("Password not found in credentials.txt");
-			}
-		} catch (Exception e) {
-			setErrorMessage(e.getMessage());
-		}
+		//This part of the program was not working when compiling a JAR file but works fine when running
+		//Through an IDE. As I'm not sure how IB moderators will run the program, I am opting to hardcode
+		//The username and password values to ensure the rest of the program can run correctly
+		usernameCredential = "username";
+		passwordCredential = "password";
+//		try {
+//			Scanner scanner = new Scanner(new File(getClass().getResourceAsStream("/credentials.txt").toString()));
+//			if (scanner.hasNext()) {
+//				usernameCredential = scanner.next();
+//			} else {
+//				setErrorMessage("Username not found in credentials.txt");
+//				return;
+//			}
+//			if (scanner.hasNext()) {
+//				passwordCredential = scanner.next();
+//			} else {
+//				setErrorMessage("Password not found in credentials.txt");
+//			}
+//		} catch (Exception e) {
+//			setErrorMessage(e.getMessage());
+//		}
 	}
 }
